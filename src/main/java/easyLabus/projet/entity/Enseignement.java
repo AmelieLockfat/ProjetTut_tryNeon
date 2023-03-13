@@ -28,16 +28,13 @@ public class Enseignement {
     @Column(name = "codeue", insertable = false,updatable = false)
     private String codeue;
 
-   // @OneToMany(mappedBy = "Enseignementbycodeens")
-    //private List<Enseigner> Personnesinternesbyenseignement;
-
-@ManyToMany(mappedBy = "Enseignementsss")
-private List<Personneinterne> Personnesinternes;
-
+    @ManyToMany(mappedBy = "Enseignementsss")
+    private ArrayList<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
+    ;
 
     @ManyToOne
     @JoinColumn (name ="codeue", referencedColumnName = "codeue",nullable = false)
-    private Ue Uebycodeue;
+    private Ue ue;
 
     @Basic
     @Column(name = "heuretravailperso")
@@ -58,12 +55,49 @@ private List<Personneinterne> Personnesinternes;
     @Column(name = "contenu")
     private String contenu;
 
-    public String getCodeens() {
-        return codeens;
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp){
+        this.codeens = codeens;
+        this.nomens = nomens;
+        this.heurecm = heurecm;
+        this.heuretd = heuretd;
+        this.heuretp = heuretp;
+        this.heuretotalencadree = heurecm + heuretd + heuretp;
+        this.ue = ue;
+        this.codeue = ue.getCodeue();
     }
 
-    public void setCodeens(String codeens) {
-        this.codeens = codeens;
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp);
+        this.contenu = contenu;
+    }
+
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu);
+        this.heuretravailperso = heuretravailperso;
+    }
+
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso);
+        this.coefficient = coefficient;
+    }
+
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient);
+        this.modalitesevaluation = modalitesevaluation;
+    }
+
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation);
+        this.prerequis = prerequis;
+    }
+
+    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours){
+        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation, prerequis);
+        this.planducours = planducours;
+    }
+
+    public String getCodeens() {
+        return codeens;
     }
 
     public String getNomens() {
@@ -80,6 +114,7 @@ private List<Personneinterne> Personnesinternes;
 
     public void setHeurecm(Double heurecm) {
         this.heurecm = heurecm;
+        this.heuretotalencadree = heurecm + heuretd + heuretp;
     }
 
     public Double getHeuretd() {
@@ -88,6 +123,7 @@ private List<Personneinterne> Personnesinternes;
 
     public void setHeuretd(Double heuretd) {
         this.heuretd = heuretd;
+        this.heuretotalencadree = heurecm + heuretd + heuretp;
     }
 
     public Double getHeuretp() {
@@ -96,22 +132,15 @@ private List<Personneinterne> Personnesinternes;
 
     public void setHeuretp(Double heuretp) {
         this.heuretp = heuretp;
+        this.heuretotalencadree = heurecm + heuretd + heuretp;
     }
 
     public Double getHeuretotalencadree() {
         return heuretotalencadree;
     }
 
-    public void setHeuretotalencadree(Double heuretotalencadree) {
-        this.heuretotalencadree = heuretotalencadree;
-    }
-
     public String getCodeue() {
         return codeue;
-    }
-
-    public void setCodeue(String codeue) {
-        this.codeue = codeue;
     }
 
     public Double getHeuretravailperso() {
@@ -162,48 +191,28 @@ private List<Personneinterne> Personnesinternes;
         this.contenu = contenu;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Enseignement that = (Enseignement) o;
-
-        if (codeens != null ? !codeens.equals(that.codeens) : that.codeens != null) return false;
-        if (nomens != null ? !nomens.equals(that.nomens) : that.nomens != null) return false;
-        if (heurecm != null ? !heurecm.equals(that.heurecm) : that.heurecm != null) return false;
-        if (heuretd != null ? !heuretd.equals(that.heuretd) : that.heuretd != null) return false;
-        if (heuretp != null ? !heuretp.equals(that.heuretp) : that.heuretp != null) return false;
-        if (heuretotalencadree != null ? !heuretotalencadree.equals(that.heuretotalencadree) : that.heuretotalencadree != null)
-            return false;
-        if (codeue != null ? !codeue.equals(that.codeue) : that.codeue != null) return false;
-        if (heuretravailperso != null ? !heuretravailperso.equals(that.heuretravailperso) : that.heuretravailperso != null)
-            return false;
-        if (coefficient != null ? !coefficient.equals(that.coefficient) : that.coefficient != null) return false;
-        if (modalitesevaluation != null ? !modalitesevaluation.equals(that.modalitesevaluation) : that.modalitesevaluation != null)
-            return false;
-        if (prerequis != null ? !prerequis.equals(that.prerequis) : that.prerequis != null) return false;
-        if (planducours != null ? !planducours.equals(that.planducours) : that.planducours != null) return false;
-        if (contenu != null ? !contenu.equals(that.contenu) : that.contenu != null) return false;
-
-        return true;
+    public Ue getUe() {
+        return ue;
     }
 
-    @Override
-    public int hashCode() {
-        int result = codeens != null ? codeens.hashCode() : 0;
-        result = 31 * result + (nomens != null ? nomens.hashCode() : 0);
-        result = 31 * result + (heurecm != null ? heurecm.hashCode() : 0);
-        result = 31 * result + (heuretd != null ? heuretd.hashCode() : 0);
-        result = 31 * result + (heuretp != null ? heuretp.hashCode() : 0);
-        result = 31 * result + (heuretotalencadree != null ? heuretotalencadree.hashCode() : 0);
-        result = 31 * result + (codeue != null ? codeue.hashCode() : 0);
-        result = 31 * result + (heuretravailperso != null ? heuretravailperso.hashCode() : 0);
-        result = 31 * result + (coefficient != null ? coefficient.hashCode() : 0);
-        result = 31 * result + (modalitesevaluation != null ? modalitesevaluation.hashCode() : 0);
-        result = 31 * result + (prerequis != null ? prerequis.hashCode() : 0);
-        result = 31 * result + (planducours != null ? planducours.hashCode() : 0);
-        result = 31 * result + (contenu != null ? contenu.hashCode() : 0);
-        return result;
+    public void setUe(Ue ue) {
+        this.ue = ue;
+        this.codeue = ue.getCodeue();
+    }
+
+    public ArrayList<Personneinterne> getPersonnesinternes() {
+        return personnesinternes;
+    }
+
+    public void setPersonnesinternes(ArrayList<Personneinterne> personnesinternes) {
+        this.personnesinternes = personnesinternes;
+    }
+
+    public void addPersonneinterne(Personneinterne personneinterne) {
+        personnesinternes.add(personneinterne);
+    }
+
+    public void delPersonneinterne(Personneinterne personneinterne) {
+        personnesinternes.remove(personneinterne);
     }
 }
