@@ -22,13 +22,14 @@ public class Personneinterne {
     @Basic
     @Column(name = "estdirecteur")
     private Boolean estdirecteur;
-    @Basic
-    @Column(name = "intituleniveau",insertable = false,updatable = false)
-    private String intituleniveau;
 
+    @Basic
+    @Column(name = "intituleniveau", insertable = false, nullable = false)
+    private String intituleniveau;
+    
     @ManyToOne
     @JoinColumn (name="intituleniveau", referencedColumnName ="intituleniveau",nullable=true )
-    private Niveau Niveaubyintituleniveau;
+    private Niveau niveau;
 
     @Basic
     @Column(name="coordprivee")
@@ -41,21 +42,51 @@ public class Personneinterne {
     @Column(name = "email")
     private String email;
 
-//com
-    //@OneToMany( mappedBy ="Personneinternebyidentifiant")
-    //private List<Enseigner> Enseignementbyidentifiant = new LinkedList<>();
-
     @ManyToMany
     @JoinTable(name="Enseigner", joinColumns = @JoinColumn(name="identifiant",referencedColumnName = "identifiant"),inverseJoinColumns = @JoinColumn(name="codeens",referencedColumnName = "codeens"))
-    private List<Enseignement> Enseignementsss ;
+    private ArrayList<Enseignement> enseignementsss;
 
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom) {
+        this.identifiant = identifiant;
+        this.motdepasse = motdepasse;
+        this.prenompers = prenom;
+        this.nompers = nom;
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, Niveau niveau) {
+        this(identifiant, motdepasse, prenom, nom);
+        this.niveau = niveau;
+        this.intituleniveau = niveau.getIntituleniveau();
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email) {
+        this(identifiant, motdepasse, prenom, nom);
+        this.email = email;
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel) {
+        this(identifiant, motdepasse, prenom, nom, email);
+        this.numtel = numtel;
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau) {
+        this(identifiant, motdepasse, prenom, nom, email, numtel);
+        this.niveau = niveau;
+        this.intituleniveau = niveau.getIntituleniveau();
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, boolean coordprivee) {
+        this(identifiant, motdepasse, prenom, nom, email, numtel, niveau);
+        this.coordprivee = coordprivee;
+    }
+
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, boolean coordprivee, boolean estdirecteur) {
+        this(identifiant, motdepasse, prenom, nom, email, numtel, niveau, coordprivee);
+        this.estdirecteur = estdirecteur;
+    }
 
     public String getIdentifiant() {
         return identifiant;
-    }
-
-    public void setIdentifiant(String identifiant) {
-        this.identifiant = identifiant;
     }
 
     public String getMotdepasse() {
@@ -90,12 +121,13 @@ public class Personneinterne {
         this.estdirecteur = estdirecteur;
     }
 
-    public String getIntituleniveau() {
-        return intituleniveau;
+    public Niveau getNiveau() {
+        return niveau;
     }
 
-    public void setIntituleniveau(String intituleniveau) {
-        this.intituleniveau = intituleniveau;
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+        this.intituleniveau = niveau.getIntituleniveau();
     }
 
     public String getNumtel() {
@@ -114,36 +146,23 @@ public class Personneinterne {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Personneinterne that = (Personneinterne) o;
-
-        if (identifiant != null ? !identifiant.equals(that.identifiant) : that.identifiant != null) return false;
-        if (motdepasse != null ? !motdepasse.equals(that.motdepasse) : that.motdepasse != null) return false;
-        if (prenompers != null ? !prenompers.equals(that.prenompers) : that.prenompers != null) return false;
-        if (nompers != null ? !nompers.equals(that.nompers) : that.nompers != null) return false;
-        if (estdirecteur != null ? !estdirecteur.equals(that.estdirecteur) : that.estdirecteur != null) return false;
-        if (intituleniveau != null ? !intituleniveau.equals(that.intituleniveau) : that.intituleniveau != null)
-            return false;
-        if (numtel != null ? !numtel.equals(that.numtel) : that.numtel != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-
-        return true;
+    public ArrayList<Enseignement> getEnseignementsss() {
+        return enseignementsss;
     }
 
-    @Override
-    public int hashCode() {
-        int result = identifiant != null ? identifiant.hashCode() : 0;
-        result = 31 * result + (motdepasse != null ? motdepasse.hashCode() : 0);
-        result = 31 * result + (prenompers != null ? prenompers.hashCode() : 0);
-        result = 31 * result + (nompers != null ? nompers.hashCode() : 0);
-        result = 31 * result + (estdirecteur != null ? estdirecteur.hashCode() : 0);
-        result = 31 * result + (intituleniveau != null ? intituleniveau.hashCode() : 0);
-        result = 31 * result + (numtel != null ? numtel.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
+    public void setEnseignementsss(ArrayList<Enseignement> enseignementsss) {
+        this.enseignementsss = enseignementsss;
+    }
+
+    public void addEnseignement(Enseignement enseignement) {
+        enseignementsss.add(enseignement);
+    }
+
+    public void delEnseignement(Enseignement enseignement) {
+        enseignementsss.remove(enseignement);
+    }
+
+    public boolean equals(Personneinterne personneinterne) {
+        return this.identifiant.equals(personneinterne.getIdentifiant());
     }
 }

@@ -24,13 +24,13 @@ public class Enseignement {
     @Basic
     @Column(name = "heuretotalencadree")
     private Double heuretotalencadree;
-    @Basic
-    @Column(name = "codeue", insertable = false,updatable = false)
-    private String codeue;
-
+    
     @ManyToMany(mappedBy = "Enseignementsss")
     private ArrayList<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
-    ;
+
+    @Basic
+    @Column(name = "codeue", insertable = false, nullable = false)
+    private String codeue;
 
     @ManyToOne
     @JoinColumn (name ="codeue", referencedColumnName = "codeue",nullable = false)
@@ -138,11 +138,7 @@ public class Enseignement {
     public Double getHeuretotalencadree() {
         return heuretotalencadree;
     }
-
-    public String getCodeue() {
-        return codeue;
-    }
-
+    
     public Double getHeuretravailperso() {
         return heuretravailperso;
     }
@@ -214,5 +210,9 @@ public class Enseignement {
 
     public void delPersonneinterne(Personneinterne personneinterne) {
         personnesinternes.remove(personneinterne);
+    }
+
+    public boolean equals(Enseignement enseignement) {
+        return this.codeens.equals(enseignement.getCodeens());
     }
 }

@@ -1,48 +1,66 @@
 package easyLabus.projet.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import easyLabus.projet.dao.EnseignementRepository;
 import easyLabus.projet.dao.UeRepository;
+import easyLabus.projet.dao.PersonneinterneRepository;
 import easyLabus.projet.entity.Enseignement;
-import jakarta.transaction.Transactional;
 
 @Service
 public class EnseignementService {
     private final EnseignementRepository enseignementDao;
     private final UeRepository ueDao;
+    private final PersonneinterneRepository personneinterneDao;
 
-    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao) {
+    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao,PersonneinterneRepository personneinterneDao) {
         this.enseignementDao = enseignementDao;
         this.ueDao=ueDao;
+        this.personneinterneDao=personneinterneDao;
     }
 
+    @Transactional(readOnly = true)
+	public List<Enseignement> allEnseignement() {
+		return enseignementDao.findAll();
+	}
+
+    @Transactional
     public Enseignement gEnseignement(String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
         var UE = ueDao.findById(codeue).orElseThrow();
         if (enseignementDao.existsById(codeens)){
             var ENS = enseignementDao.findById(codeens).get();
-            if (!nomens.equals(ENS.getNomens())){
+            if (nomens!=null && !nomens.equals(ENS.getNomens())){
                 ENS.setNomens(nomens);
             }
-            if (CM!=ENS.getHeurecm()){
+            if (CM!=null && CM!=ENS.getHeurecm()){
                 ENS.setHeurecm(CM);
             }
-            if (CM!=ENS.getHeuretd()){
+            if (TD!=null && TD!=ENS.getHeuretd()){
                 ENS.setHeuretd(TD);
             }
-            if (CM!=ENS.getHeuretp()){
+            if (TP!=null && TP!=ENS.getHeuretp()){
                 ENS.setHeuretp(TP);
             }
-            if (contenu.equals(ENS.getContenu())){
+            if (contenu!=null && contenu.equals(ENS.getContenu())){
                 ENS.setContenu(contenu);
             }
-            if (heuretravailperso!=ENS.getHeuretravailperso()){
+            if (heuretravailperso!=null && heuretravailperso!=ENS.getHeuretravailperso()){
                 ENS.setHeuretravailperso(heuretravailperso);
             }
-            if (coefficient!=ENS.getCoefficient()){
+            if (coefficient!=null && coefficient!=ENS.getCoefficient()){
                 ENS.setCoefficient(coefficient);
+            }
+            if (modalitesevaluation!=null && !modalitesevaluation.equals(ENS.getModalitesevaluation())){
+                ENS.setModalitesevaluation(modalitesevaluation);
+            }
+            if (prerequis!=null && !prerequis.equals(ENS.getPrerequis())){
+                ENS.setPrerequis(prerequis);
+            }
+            if (planducours!=null && !planducours.equals(ENS.getPlanducours())){
+                ENS.setPlanducours(planducours);
             }
             enseignementDao.save(ENS);
             return ENS;
@@ -52,5 +70,27 @@ public class EnseignementService {
             enseignementDao.save(ENS);
             return ENS;
         }
+    }
+
+    @Transactional
+    public Enseignement addEnseignant(String codeens,String identifiant) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var PERS = personneinterneDao.findById(identifiant).orElseThrow();
+        ENS.addPersonneinterne(PERS);
+        PERS.addEnseignement(ENS);
+        enseignementDao.save(ENS);
+        personneinterneDao.save(PERS);
+        return ENS;
+    }
+
+    @Transactional
+    public Enseignement delEnseignant(String codeens,String identifiant) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var PERS = personneinterneDao.findById(identifiant).orElseThrow();
+        ENS.delPersonneinterne(PERS);
+        PERS.delEnseignement(ENS);
+        enseignementDao.save(ENS);
+        personneinterneDao.save(PERS);
+        return ENS;
     }
 }
