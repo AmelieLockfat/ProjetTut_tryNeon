@@ -11,35 +11,35 @@ public class Personneinterne {
     @Column(name = "identifiant")
     private String identifiant;
     @Basic
-    @Column(name = "motdepasse")
+    @Column(name = "motdepasse", nullable = false)
     private String motdepasse;
     @Basic
-    @Column(name = "prenompers")
+    @Column(name = "prenompers", nullable = false)
     private String prenompers;
     @Basic
-    @Column(name = "nompers")
+    @Column(name = "nompers", nullable = false)
     private String nompers;
     @Basic
-    @Column(name = "estdirecteur")
-    private Boolean estdirecteur;
+    @Column(name = "estdirecteur", nullable = false)
+    private Boolean estdirecteur = false;
 
     @Basic
-    @Column(name = "intituleniveau", insertable = false, nullable = false)
+    @Column(name = "intituleniveau", insertable = false, nullable = true)
     private String intituleniveau;
     
     @ManyToOne
-    @JoinColumn (name="intituleniveau", referencedColumnName ="intituleniveau",nullable=true )
+    @JoinColumn (name="intituleniveau", referencedColumnName ="intituleniveau",nullable=true)
     private Niveau niveau;
 
     @Basic
-    @Column(name="coordprivee")
-    private Boolean coordprivee;
+    @Column(name="coordprivee", nullable = false)
+    private Boolean coordprivee = true;
 
     @Basic
-    @Column(name = "numtel")
+    @Column(name = "numtel", nullable = true)
     private String numtel;
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = true)
     private String email;
 
     @ManyToMany
@@ -75,12 +75,12 @@ public class Personneinterne {
         this.intituleniveau = niveau.getIntituleniveau();
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, boolean coordprivee) {
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, Boolean coordprivee) {
         this(identifiant, motdepasse, prenom, nom, email, numtel, niveau);
         this.coordprivee = coordprivee;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, boolean coordprivee, boolean estdirecteur) {
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, Boolean coordprivee, Boolean estdirecteur) {
         this(identifiant, motdepasse, prenom, nom, email, numtel, niveau, coordprivee);
         this.estdirecteur = estdirecteur;
     }
@@ -117,8 +117,12 @@ public class Personneinterne {
         return estdirecteur;
     }
 
-    public void setEstdirecteur(Boolean estdirecteur) {
-        this.estdirecteur = estdirecteur;
+    public void modifEstdirecteur() {
+        this.estdirecteur = !estdirecteur;
+    }
+
+    public String getIntituleniveau() {
+        return intituleniveau;
     }
 
     public Niveau getNiveau() {
@@ -144,6 +148,14 @@ public class Personneinterne {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean getCoordPrivee() {
+        return coordprivee;
+    }
+
+    public void modifCoordPrivee() {
+        this.coordprivee = !coordprivee;
     }
 
     public ArrayList<Enseignement> getEnseignementsss() {

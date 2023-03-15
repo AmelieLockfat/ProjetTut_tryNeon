@@ -29,7 +29,6 @@ public class EnseignementService {
 
     @Transactional
     public Enseignement gEnseignement(String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
-        var UE = ueDao.findById(codeue).orElseThrow();
         if (enseignementDao.existsById(codeens)){
             var ENS = enseignementDao.findById(codeens).get();
             if (nomens!=null && !nomens.equals(ENS.getNomens())){
@@ -66,6 +65,7 @@ public class EnseignementService {
             return ENS;
         }
         else {
+            var UE = ueDao.findById(codeue).orElseThrow();
             var ENS = new Enseignement(codeens,nomens,UE,CM,TD,TP,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
             enseignementDao.save(ENS);
             return ENS;

@@ -10,19 +10,19 @@ public class Enseignement {
     @Column(name = "codeens")
     private String codeens;
     @Basic
-    @Column(name = "nomens")
+    @Column(name = "nomens", nullable = false)
     private String nomens;
     @Basic
-    @Column(name = "heurecm")
+    @Column(name = "heurecm", nullable = false)
     private Double heurecm;
     @Basic
-    @Column(name = "heuretd")
+    @Column(name = "heuretd", nullable = false)
     private Double heuretd;
     @Basic
-    @Column(name = "heuretp")
+    @Column(name = "heuretp", nullable = false)
     private Double heuretp;
     @Basic
-    @Column(name = "heuretotalencadree")
+    @Column(name = "heuretotalencadree", nullable = false)
     private Double heuretotalencadree;
     
     @ManyToMany(mappedBy = "Enseignementsss")
@@ -37,22 +37,22 @@ public class Enseignement {
     private Ue ue;
 
     @Basic
-    @Column(name = "heuretravailperso")
+    @Column(name = "heuretravailperso", nullable = true)
     private Double heuretravailperso;
     @Basic
-    @Column(name = "coefficient")
+    @Column(name = "coefficient", nullable = true)
     private Double coefficient;
     @Basic
-    @Column(name = "modalitesevaluation")
+    @Column(name = "modalitesevaluation", nullable = true)
     private String modalitesevaluation;
     @Basic
-    @Column(name = "prerequis")
+    @Column(name = "prerequis", nullable = true)
     private String prerequis;
     @Basic
-    @Column(name = "planducours")
+    @Column(name = "planducours", nullable = true)
     private String planducours;
     @Basic
-    @Column(name = "contenu")
+    @Column(name = "contenu", nullable = true)
     private String contenu;
 
     public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp){

@@ -1,6 +1,5 @@
 package easyLabus.projet.rest;
 
-import easyLabus.projet.dto.EnseignementDTO;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.service.EnseignementService;
 
@@ -17,12 +16,12 @@ public class EnseignementController {
 		this.enseignementService = enseignementService;
 	}
 
-	@GetMapping(path = "")
+	@GetMapping(path = "all")
 	public List<Enseignement> getEnseignements() {
 		return enseignementService.allEnseignement();
 	}
 
-	@PostMapping(path = "modifENS")
+	@PostMapping(path = "modif")
     public Enseignement gEnseignement(
         @RequestParam(required = true) String codeens, 
         @RequestParam(required = false) String nomens,  
@@ -37,6 +36,22 @@ public class EnseignementController {
         @RequestParam(required = false) String prerequis,  
         @RequestParam(required = false) String planducours) {
 
-        return enseignementService.gEnseignement(codeens,nomens,CM,TD,TP,codeue,contenu,heuretravailperso,coefficient,modalitesevaluation, String prerequis, String planducours);
+        return enseignementService.gEnseignement(codeens,nomens,CM,TD,TP,codeue,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
+    }
+
+    @PostMapping(path = "addpersonneinterne")
+    public Enseignement addPers(
+        @RequestParam(required = true) String codeens,
+        @RequestParam(required = true) String identifiant) {
+
+        return enseignementService.addEnseignant(codeens, identifiant);
+    }
+
+    @PostMapping(path = "delpersonneinterne")
+    public Enseignement delPers(
+        @RequestParam(required = true) String codeens,
+        @RequestParam(required = true) String identifiant) {
+
+        return enseignementService.delEnseignant(codeens, identifiant);
     }
 }
