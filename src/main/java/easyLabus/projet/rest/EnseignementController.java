@@ -17,11 +17,6 @@ public class EnseignementController {
 		this.enseignementService = enseignementService;
 	}
 
-	@GetMapping(path = "all")
-	public List<Enseignement> getEnseignements() {
-		return enseignementService.allEnseignement();
-	}
-
 	@PostMapping(path = "modif")
     public Enseignement gEnseignement(
         @RequestParam(required = true) String codeens, 

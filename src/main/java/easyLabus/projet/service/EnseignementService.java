@@ -26,11 +26,6 @@ public class EnseignementService {
         this.ficheENSDao=ficheENSDao;
     }
 
-    @Transactional(readOnly = true)
-	public List<Enseignement> allEnseignement() {
-		return enseignementDao.findAll();
-	}
-
     @Transactional
     public Enseignement gEnseignement(String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
         if (enseignementDao.existsById(codeens)){
