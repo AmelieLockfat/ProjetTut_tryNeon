@@ -8,18 +8,22 @@ import org.springframework.transaction.annotation.Transactional;
 import easyLabus.projet.dao.EnseignementRepository;
 import easyLabus.projet.dao.UeRepository;
 import easyLabus.projet.dao.PersonneinterneRepository;
+import easyLabus.projet.dao.FicheENSRepository;
 import easyLabus.projet.entity.Enseignement;
+import easyLabus.projet.entity.FicheENS;
 
 @Service
 public class EnseignementService {
     private final EnseignementRepository enseignementDao;
     private final UeRepository ueDao;
     private final PersonneinterneRepository personneinterneDao;
+    private final FicheENSRepository ficheENSDao;
 
-    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao,PersonneinterneRepository personneinterneDao) {
+    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao,PersonneinterneRepository personneinterneDao, FicheENSRepository ficheENSDao) {
         this.enseignementDao = enseignementDao;
         this.ueDao=ueDao;
         this.personneinterneDao=personneinterneDao;
+        this.ficheENSDao=ficheENSDao;
     }
 
     @Transactional(readOnly = true)
@@ -92,5 +96,11 @@ public class EnseignementService {
         enseignementDao.save(ENS);
         personneinterneDao.save(PERS);
         return ENS;
+    }
+
+    @Transactional(readOnly = true)
+    public FicheENS getFicheENS(String codeens){
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        return new FicheENS(ENS);
     }
 }

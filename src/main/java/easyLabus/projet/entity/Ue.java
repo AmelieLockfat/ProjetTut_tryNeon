@@ -39,7 +39,7 @@ public class Ue {
 
     @ManyToOne
     @JoinColumn (name="idsemestre", referencedColumnName ="idsemestre",nullable=false )
-    private Semestre Semestrebyidsemestre;
+    private Semestre semestre;
 
     @OneToMany(mappedBy = "Uebycodeue")
     private List<Enseignement> Enseignementbyue = new ArrayList<>();
@@ -132,8 +132,13 @@ public class Ue {
         return idsemestre;
     }
 
-    public void setIdsemestre(Integer idsemestre) {
-        this.idsemestre = idsemestre;
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
+        this.idsemestre = semestre.getIdsemestre();
+    }
+
+    public Semestre getSemestre() {
+        return semestre;
     }
 
     public String getModalitescontrole() {

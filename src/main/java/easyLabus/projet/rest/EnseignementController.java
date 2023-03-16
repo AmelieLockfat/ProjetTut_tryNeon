@@ -1,6 +1,7 @@
 package easyLabus.projet.rest;
 
 import easyLabus.projet.entity.Enseignement;
+import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.service.EnseignementService;
 
 import java.util.List;
@@ -39,19 +40,26 @@ public class EnseignementController {
         return enseignementService.gEnseignement(codeens,nomens,CM,TD,TP,codeue,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
     }
 
-    @PostMapping(path = "addpersonneinterne")
+    @PutMapping(path = "{codeens}/addpersonneinterne")
     public Enseignement addPers(
-        @RequestParam(required = true) String codeens,
+        @PathVariable String codeens,
         @RequestParam(required = true) String identifiant) {
 
         return enseignementService.addEnseignant(codeens, identifiant);
     }
 
-    @PostMapping(path = "delpersonneinterne")
+    @PutMapping(path = "{codeens}/delpersonneinterne")
     public Enseignement delPers(
-        @RequestParam(required = true) String codeens,
+        @PathVariable String codeens,
         @RequestParam(required = true) String identifiant) {
 
         return enseignementService.delEnseignant(codeens, identifiant);
+    }
+
+    @GetMapping(path = "{codeens}/fiche")
+    public FicheENS getFiche(
+        @PathVariable String codeens) {
+
+        return enseignementService.getFicheENS(codeens);
     }
 }
