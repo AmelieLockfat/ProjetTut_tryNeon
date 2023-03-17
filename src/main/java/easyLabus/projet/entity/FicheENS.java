@@ -67,9 +67,9 @@ public class FicheENS {
         this.heuretd = enseignement.getHeuretd();
         this.heuretp = enseignement.getHeuretp();
         this.heuretotalencadree = enseignement.getHeuretotalencadree();
-        for (Personneinterne p:enseignement.getPersonnesinternes()){
-            String[] coords = {p.getEmail(),p.getNumtel()};
-            intervenants.put(p.getPrenompers()+p.getNompers(), coords);
+        for (Personneinterne pers : enseignement.getPersonnesinternes()){
+            String[] coords = {pers.getEmail(),pers.getNumtel()};
+            intervenants.put(pers.getPrenompers()+" "+pers.getNompers(), coords);
         }
         this.heuretravailperso = enseignement.getHeuretravailperso();
         this.coefficient = enseignement.getCoefficient();

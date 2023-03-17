@@ -32,6 +32,9 @@ public class Ue {
     @Basic
     @Column(name = "volumprojet", nullable = true)
     private Double volumprojet;
+    @Basic
+    @Column(name = "volumstage", nullable = true)
+    private Double volumstage;
 
     @Basic
     @Column(name = "idsemestre",insertable = false,updatable = false)
@@ -84,33 +87,38 @@ public class Ue {
         this.volumprojet = volumprojet;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole) {
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage) {
         this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet);
+        this.volumstage = volumstage;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage);
         this.modalitescontrole = modalitescontrole;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole);
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole);
         this.prerequis = prerequis;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis);
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis);
         this.bibliographiedebase = bibliographiedebase;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase);
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase);
         this.ordreue = ordreue;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase, ordreue);
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue);
         this.motcles = motcles;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase, ordreue, motcles);
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue, motcles);
         this.competenses = competenses;
     }
 
@@ -162,6 +170,13 @@ public class Ue {
         this.volumprojet = volumprojet;
     }
 
+    public Double getVolumstage() {
+        return volumstage;
+    }
+
+    public void setVolumstage(Double volumstage) {
+        this.volumstage = volumstage;
+    }
 
     public Integer getIdsemestre() {
         return idsemestre;
