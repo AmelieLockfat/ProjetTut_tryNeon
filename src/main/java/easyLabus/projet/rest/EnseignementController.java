@@ -17,14 +17,14 @@ public class EnseignementController {
 		this.enseignementService = enseignementService;
 	}
 
-	@PostMapping(path = "modif")
-    public Enseignement gEnseignement(
+	@PostMapping(path = "new")
+    public Enseignement creerEns(
         @RequestParam(required = true) String codeens, 
-        @RequestParam(required = false) String nomens,  
-        @RequestParam(required = false) Double CM,  
-        @RequestParam(required = false) Double TD,  
-        @RequestParam(required = false) Double TP,  
-        @RequestParam(required = false) String codeue,  
+        @RequestParam(required = true) String nomens,  
+        @RequestParam(required = true) Double CM,  
+        @RequestParam(required = true) Double TD,  
+        @RequestParam(required = true) Double TP,  
+        @RequestParam(required = true) String codeue,  
         @RequestParam(required = false) String contenu,  
         @RequestParam(required = false) Double heuretravailperso,  
         @RequestParam(required = false) Double coefficient,  
@@ -32,8 +32,25 @@ public class EnseignementController {
         @RequestParam(required = false) String prerequis,  
         @RequestParam(required = false) String planducours) {
 
-        return enseignementService.gEnseignement(codeens,nomens,CM,TD,TP,codeue,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
+        return enseignementService.creerEnseignement(codeens,nomens,CM,TD,TP,codeue,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
     }
+
+    @PutMapping(path = "{codeens}/modif")
+    public Enseignement modifEns(
+    @PathVariable String codeens, 
+    @RequestParam(required = false) String nomens,  
+    @RequestParam(required = false) Double CM,  
+    @RequestParam(required = false) Double TD,  
+    @RequestParam(required = false) Double TP,  
+    @RequestParam(required = false) String contenu,  
+    @RequestParam(required = false) Double heuretravailperso,  
+    @RequestParam(required = false) Double coefficient,  
+    @RequestParam(required = false) String modalitesevaluation,  
+    @RequestParam(required = false) String prerequis,  
+    @RequestParam(required = false) String planducours) {
+
+    return enseignementService.modifEnseignement(codeens,nomens,CM,TD,TP,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
+}
 
     @PutMapping(path = "{codeens}/addpersonneinterne")
     public Enseignement addPers(
