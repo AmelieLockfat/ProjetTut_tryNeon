@@ -12,25 +12,25 @@ public class Ue {
     @Column(name = "codeue")
     private  String codeue;
     @Basic
-    @Column(name = "intituleue")
+    @Column(name = "intituleue", nullable = false)
     private String intituleue;
     @Basic
-    @Column(name = "creditsects")
+    @Column(name = "creditsects", nullable = false)
     private Integer creditsects;
     @Basic
-    @Column(name = "heurecm")
+    @Column(name = "heurecm", insertable = false, nullable = false)
     private Double heurecm;
     @Basic
-    @Column(name = "heuretd")
+    @Column(name = "heuretd", insertable = false, nullable = false)
     private Double heuretd;
     @Basic
-    @Column(name = "heuretp")
+    @Column(name = "heuretp", insertable = false, nullable = false)
     private Double heuretp;
     @Basic
-    @Column(name = "volumtravailperso")
+    @Column(name = "volumtravailperso", nullable = true)
     private Double volumtravailperso;
     @Basic
-    @Column(name = "volumprojet")
+    @Column(name = "volumprojet", nullable = true)
     private Double volumprojet;
 
     @Basic
@@ -41,34 +41,81 @@ public class Ue {
     @JoinColumn (name="idsemestre", referencedColumnName ="idsemestre",nullable=false )
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "Uebycodeue")
-    private List<Enseignement> Enseignementbyue = new ArrayList<>();
+    @OneToMany(mappedBy = "ue")
+    private ArrayList<Enseignement> enseignements = new ArrayList<>();
 
     @Basic
-    @Column(name = "modalitescontrole")
+    @Column(name = "modalitescontrole", nullable = true)
     private String modalitescontrole;
     @Basic
-    @Column(name = "prerequis")
+    @Column(name = "prerequis", nullable = true)
     private String prerequis;
     @Basic
-    @Column(name = "bibliographiedebase")
+    @Column(name = "bibliographiedebase", nullable = true)
     private String bibliographiedebase;
     @Basic
-    @Column(name = "ordreue")
+    @Column(name = "ordreue", nullable = true)
     private Integer ordreue;
     @Basic
-    @Column(name = "motcles")
+    @Column(name = "motcles", nullable = true)
     private String motcles;
     @Basic
-    @Column(name = "competenses")
+    @Column(name = "competenses", nullable = true)
     private String competenses;
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects) {
+        this.codeue = codeue;
+        this.intituleue = intituleue;
+        this.semestre = semestre;
+        this.idsemestre = semestre.getIdsemestre();
+        this.creditsects = creditsects;
+        this.heurecm = 0.0;
+        this.heuretd = 0.0;
+        this.heuretp = 0.0;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso) {
+        this(codeue, intituleue, semestre, creditsects);
+        this.volumtravailperso = volumtravailperso;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso);
+        this.volumprojet = volumprojet;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet);
+        this.modalitescontrole = modalitescontrole;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole);
+        this.prerequis = prerequis;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis);
+        this.bibliographiedebase = bibliographiedebase;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase);
+        this.ordreue = ordreue;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase, ordreue);
+        this.motcles = motcles;
+    }
+
+    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
+        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, modalitescontrole, prerequis, bibliographiedebase, ordreue, motcles);
+        this.competenses = competenses;
+    }
 
     public  String getCodeue() {
         return codeue;
-    }
-
-    public void setCodeue(String codeue) {
-        this.codeue = codeue;
     }
 
     public String getIntituleue() {
@@ -91,24 +138,12 @@ public class Ue {
         return heurecm;
     }
 
-    public void setHeurecm(Double heurecm) {
-        this.heurecm = heurecm;
-    }
-
     public Double getHeuretd() {
         return heuretd;
     }
 
-    public void setHeuretd(Double heuretd) {
-        this.heuretd = heuretd;
-    }
-
     public Double getHeuretp() {
         return heuretp;
-    }
-
-    public void setHeuretp(Double heuretp) {
-        this.heuretp = heuretp;
     }
 
     public Double getVolumtravailperso() {
@@ -189,42 +224,33 @@ public class Ue {
         this.competenses = competenses;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Ue ue = (Ue) o;
-
-        if (codeue != null ? !codeue.equals(ue.codeue) : ue.codeue != null) return false;
-        if (intituleue != null ? !intituleue.equals(ue.intituleue) : ue.intituleue != null) return false;
-        if (creditsects != null ? !creditsects.equals(ue.creditsects) : ue.creditsects != null) return false;
-        if (heurecm != null ? !heurecm.equals(ue.heurecm) : ue.heurecm != null) return false;
-        if (heuretd != null ? !heuretd.equals(ue.heuretd) : ue.heuretd != null) return false;
-        if (heuretp != null ? !heuretp.equals(ue.heuretp) : ue.heuretp != null) return false;
-        if (volumtravailperso != null ? !volumtravailperso.equals(ue.volumtravailperso) : ue.volumtravailperso != null)
-            return false;
-        if (volumprojet != null ? !volumprojet.equals(ue.volumprojet) : ue.volumprojet != null) return false;
-        return false;
+    public void addEnseignement(Enseignement enseignement) {
+        enseignements.add(enseignement);
+        heurecm += enseignement.getHeurecm();
+        heuretd += enseignement.getHeuretd();
+        heuretp += enseignement.getHeuretp();
     }
 
-    @Override
-    public int hashCode() {
-        int result = codeue != null ? codeue.hashCode() : 0;
-        result = 31 * result + (intituleue != null ? intituleue.hashCode() : 0);
-        result = 31 * result + (creditsects != null ? creditsects.hashCode() : 0);
-        result = 31 * result + (heurecm != null ? heurecm.hashCode() : 0);
-        result = 31 * result + (heuretd != null ? heuretd.hashCode() : 0);
-        result = 31 * result + (heuretp != null ? heuretp.hashCode() : 0);
-        result = 31 * result + (volumtravailperso != null ? volumtravailperso.hashCode() : 0);
-        result = 31 * result + (volumprojet != null ? volumprojet.hashCode() : 0);
-        result = 31 * result + (idsemestre != null ? idsemestre.hashCode() : 0);
-        result = 31 * result + (modalitescontrole != null ? modalitescontrole.hashCode() : 0);
-        result = 31 * result + (prerequis != null ? prerequis.hashCode() : 0);
-        result = 31 * result + (bibliographiedebase != null ? bibliographiedebase.hashCode() : 0);
-        result = 31 * result + (ordreue != null ? ordreue.hashCode() : 0);
-        result = 31 * result + (motcles != null ? motcles.hashCode() : 0);
-        result = 31 * result + (competenses != null ? competenses.hashCode() : 0);
-        return result;
+    public void delEnseignement(Enseignement enseignement) {
+        enseignements.remove(enseignement);
+        heurecm -= enseignement.getHeurecm();
+        heuretd -= enseignement.getHeuretd();
+        heuretp -= enseignement.getHeuretp();
+    }
+
+    public ArrayList<Enseignement> getEnseignements() {
+        return enseignements;
+    }
+
+    public void setEnseignements(ArrayList<Enseignement> enseignements) {
+        this.enseignements = enseignements;
+        heurecm = 0.0;
+        heuretd = 0.0;
+        heuretp = 0.0;
+        for (Enseignement ens:enseignements) {
+            heurecm += ens.getHeurecm();
+            heuretd += ens.getHeuretd();
+            heuretp += ens.getHeuretp();
+        }
     }
 }
