@@ -16,13 +16,17 @@ public class Niveau {
 
     @ManyToOne
     @JoinColumn (name="nomorientation", referencedColumnName ="nomorientation",nullable=false )
-    private Orientation Orientationbynomorientation;
+    private Orientation orientation;
 
 
-    @OneToMany(mappedBy = "Niveaubyintituleniveau")
-    private List<Semestre> Semestrebyniveau = new ArrayList<>();
+    @OneToMany(mappedBy = "niveau")
+    private List<Semestre> semestres = new ArrayList<>();
 
-
+    public Niveau(String intituleniveau, Orientation orientation) {
+        this.intituleniveau = intituleniveau;
+        this.orientation = orientation;
+        this.nomorientation = orientation.getNomorientation();
+    }
 
     public String getIntituleniveau() {
         return intituleniveau;
@@ -35,30 +39,13 @@ public class Niveau {
     public String getNomorientation() {
         return nomorientation;
     }
-
-    public void setNomorientation(String nomorientation) {
-        this.nomorientation = nomorientation;
+    
+    public Orientation getOrientation() {
+        return orientation;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Niveau niveau = (Niveau) o;
-
-        if (intituleniveau != null ? !intituleniveau.equals(niveau.intituleniveau) : niveau.intituleniveau != null)
-            return false;
-        if (nomorientation != null ? !nomorientation.equals(niveau.nomorientation) : niveau.nomorientation != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = intituleniveau != null ? intituleniveau.hashCode() : 0;
-        result = 31 * result + (nomorientation != null ? nomorientation.hashCode() : 0);
-        return result;
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+        this.nomorientation = orientation.getNomorientation();
     }
 }

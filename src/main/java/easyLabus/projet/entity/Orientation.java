@@ -3,7 +3,6 @@ package easyLabus.projet.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Orientation {
@@ -17,10 +16,16 @@ public class Orientation {
 
     @ManyToOne
     @JoinColumn (name="intitulediplome", referencedColumnName ="intitulediplome",nullable=false )
-    private Diplome Diplomebyintitulediplome;
+    private Diplome diplome;
 
-    @OneToMany(mappedBy = "Orientationbynomorientation")
-    private List<Niveau> Niveaubyorientation = new ArrayList<>();
+    @OneToMany(mappedBy = "orientation")
+    private ArrayList<Niveau> niveaus = new ArrayList<>();
+
+    public Orientation(String nomOrientation, Diplome diplome) {
+        this.nomorientation = nomOrientation;
+        this.diplome = diplome;
+        this.intitulediplome = diplome.getIntitulediplome();
+    }
 
     public String getNomorientation() {
         return nomorientation;
@@ -33,30 +38,33 @@ public class Orientation {
     public String getIntitulediplome() {
         return intitulediplome;
     }
-
-    public void setIntitulediplome(String intitulediplome) {
-        this.intitulediplome = intitulediplome;
+    
+    public Diplome getDiplome() {
+        return diplome;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Orientation that = (Orientation) o;
-
-        if (nomorientation != null ? !nomorientation.equals(that.nomorientation) : that.nomorientation != null)
-            return false;
-        if (intitulediplome != null ? !intitulediplome.equals(that.intitulediplome) : that.intitulediplome != null)
-            return false;
-
-        return true;
+    public void setDiplome(Diplome diplome) {
+        this.diplome = diplome;
+        this.intitulediplome = diplome.getIntitulediplome();
     }
 
-    @Override
-    public int hashCode() {
-        int result = nomorientation != null ? nomorientation.hashCode() : 0;
-        result = 31 * result + (intitulediplome != null ? intitulediplome.hashCode() : 0);
-        return result;
+    public ArrayList<Niveau> getNiveaus() {
+        return niveaus;
+    }
+
+    public void setNiveaus(ArrayList<Niveau> niveaus) {
+        this.niveaus = niveaus;
+    }
+
+    public void addNiveau(Niveau niveau) {
+        niveaus.add(niveau);
+    }
+
+    public void delNiveau(Niveau niveau) {
+        niveaus.remove(niveau);
+    }
+
+    public boolean equals(Orientation orientation) {
+        return this.nomorientation.equals(orientation.getNomorientation());
     }
 }

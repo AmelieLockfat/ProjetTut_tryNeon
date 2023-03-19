@@ -268,4 +268,8 @@ public class Ue {
             heuretp += ens.getHeuretp();
         }
     }
+
+    public boolean equals(Ue ue) {
+        return this.codeue.equals(ue.getCodeue());
+    }
 }
