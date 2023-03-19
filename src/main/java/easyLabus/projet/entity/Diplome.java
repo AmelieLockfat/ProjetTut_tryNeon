@@ -29,7 +29,7 @@ public class Diplome {
         return orientations;
     }
 
-    public void setOrientations(ArrayList<Orientation>) {
+    public void setOrientations(ArrayList<Orientation> orientations) {
         this.orientations = orientations;
     }
 

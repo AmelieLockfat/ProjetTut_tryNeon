@@ -13,10 +13,4 @@ public class Enseigner {
     @Id
     @Column(name="codeens")
     private String codeens;
-
-
-
-
-
-
 }
