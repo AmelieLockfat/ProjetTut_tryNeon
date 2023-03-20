@@ -53,10 +53,9 @@ public class Personneinterne {
         this.nompers = nom;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, Niveau niveau) {
-        this(identifiant, motdepasse, prenom, nom);
-        this.niveau = niveau;
-        this.intituleniveau = niveau.getIntituleniveau();
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom) {
+        this(identifiant, motdepasse, prenom, nom)
+        this.intituleniveau = intituleniveau;
     }
 
     public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email) {
@@ -69,10 +68,8 @@ public class Personneinterne {
         this.numtel = numtel;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau) {
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String intituleniveau, String email, String numtel) {
         this(identifiant, motdepasse, prenom, nom, email, numtel);
-        this.niveau = niveau;
-        this.intituleniveau = niveau.getIntituleniveau();
     }
 
     public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, Boolean coordprivee) {

@@ -32,20 +32,8 @@ public class FicheENSService {
     }
 
     @Transactional
-    public FicheENS getFicheENS(String codeens, String annee){
+    public FicheENS getFicheENS(String codeens){
         var ENS = enseignementDao.findById(codeens).orElseThrow();
-        var FENS = new FicheENS(ENS);
-        for (Personneinterne p : ENS.getPersonnesinternes()){
-            var intENS = new IntervenantENS(FENS, p);
-            FENS.addIntervenant(intENS);
-            intervenantENSDao.save(intENS);
-        }
-        ficheENSDao.save(FENS);
-        return FENS;
-    }
-
-    @Transactional
-    public FicheENS jesaispas(String codeens){
         var now = LocalDate.now();
         var i = 0;
         if (now.getMonthValue()<8){
@@ -57,5 +45,37 @@ public class FicheENSService {
         for (IntervenantENS intENS : FENS.getIntervenants()){
             intervenantENSDao.delete(intENS);
         }
+        FENS = new FicheENS(ENS);
+        for (Personneinterne p : ENS.getPersonnesinternes()){
+            var intENS = new IntervenantENS(FENS, p);
+            FENS.addIntervenant(intENS);
+            intervenantENSDao.save(intENS);
+        }
+        ficheENSDao.save(FENS);
+        return FENS;
+    }
+
+    @Transactional
+    public FicheENS getFicheENS(String codeens, String annee){
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var now = LocalDate.now();
+        var i = 0;
+        if (now.getMonthValue()<8){
+            i = 1;
+        }
+        var currentannee = now.getYear()-i+"/"+now.getYear();
+        var FENS = ficheENSDao.ficheENSByYear(codeens,annee);
+        ficheENSDao.delete(FENS);
+        for (IntervenantENS intENS : FENS.getIntervenants()){
+            intervenantENSDao.delete(intENS);
+        }
+        FENS = new FicheENS(ENS);
+        for (Personneinterne p : ENS.getPersonnesinternes()){
+            var intENS = new IntervenantENS(FENS, p);
+            FENS.addIntervenant(intENS);
+            intervenantENSDao.save(intENS);
+        }
+        ficheENSDao.save(FENS);
+        return FENS;
     }
 }
