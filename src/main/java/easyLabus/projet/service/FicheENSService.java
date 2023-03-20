@@ -31,7 +31,7 @@ public class FicheENSService {
         this.intervenantENSDao = intervenantENSDao;
     }
 
-    @Transactional
+    /*@Transactional
     public FicheENS getFicheENS(String codeens){
         var ENS = enseignementDao.findById(codeens).orElseThrow();
         var now = LocalDate.now();
@@ -77,5 +77,5 @@ public class FicheENSService {
         }
         ficheENSDao.save(FENS);
         return FENS;
-    }
+    }*/
 }

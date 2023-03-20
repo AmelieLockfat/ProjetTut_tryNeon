@@ -2,8 +2,6 @@ package easyLabus.projet.dao;
 
 import easyLabus.projet.entity.FicheENS;
 
-import java.util.ArrayList;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
