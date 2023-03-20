@@ -37,20 +37,20 @@ public class EnseignementController {
 
     @PutMapping(path = "{codeens}/modif")
     public Enseignement modifEns(
-    @PathVariable String codeens, 
-    @RequestParam(required = false) String nomens,  
-    @RequestParam(required = false) Double CM,  
-    @RequestParam(required = false) Double TD,  
-    @RequestParam(required = false) Double TP,  
-    @RequestParam(required = false) String contenu,  
-    @RequestParam(required = false) Double heuretravailperso,  
-    @RequestParam(required = false) Double coefficient,  
-    @RequestParam(required = false) String modalitesevaluation,  
-    @RequestParam(required = false) String prerequis,  
-    @RequestParam(required = false) String planducours) {
+        @PathVariable String codeens, 
+        @RequestParam(required = false) String nomens,  
+        @RequestParam(required = false) Double CM,  
+        @RequestParam(required = false) Double TD,  
+        @RequestParam(required = false) Double TP,  
+        @RequestParam(required = false) String contenu,  
+        @RequestParam(required = false) Double heuretravailperso,  
+        @RequestParam(required = false) Double coefficient,  
+        @RequestParam(required = false) String modalitesevaluation,  
+        @RequestParam(required = false) String prerequis,  
+        @RequestParam(required = false) String planducours) {
 
-    return enseignementService.modifEnseignement(codeens,nomens,CM,TD,TP,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
-}
+        return enseignementService.modifEnseignement(codeens,nomens,CM,TD,TP,contenu,heuretravailperso,coefficient,modalitesevaluation,prerequis,planducours);
+    }
 
     @PutMapping(path = "{codeens}/addpersonneinterne")
     public Enseignement addPers(
