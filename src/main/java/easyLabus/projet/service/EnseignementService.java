@@ -97,10 +97,4 @@ public class EnseignementService {
         personneinterneDao.save(PERS);
         return ENS;
     }
-
-    @Transactional(readOnly = true)
-    public FicheENS getFicheENS(String codeens){
-        var ENS = enseignementDao.findById(codeens).orElseThrow();
-        return new FicheENS(ENS);
-    }
 }

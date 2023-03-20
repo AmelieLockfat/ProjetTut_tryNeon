@@ -67,11 +67,4 @@ public class EnseignementController {
 
         return enseignementService.delEnseignant(codeens, identifiant);
     }
-
-    @GetMapping(path = "{codeens}/fiche")
-    public FicheENS getFiche(
-        @PathVariable String codeens) {
-
-        return enseignementService.getFicheENS(codeens);
-    }
 }

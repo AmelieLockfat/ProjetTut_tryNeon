@@ -2,8 +2,6 @@ package easyLabus.projet.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-
 @Entity
 public class IntervenantUE {
     @Id
