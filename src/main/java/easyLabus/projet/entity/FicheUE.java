@@ -117,4 +117,8 @@ public class FicheUE {
         this.intitulediplome = ori.getDiplome().getIntitulediplome();
         //this.anneedetude = 
     }
+
+    public FicheUE() {
+
+    }
 }

@@ -82,4 +82,8 @@ public class FicheENS {
         this.numsemestre = ue.getSemestre().getNumsemestre();
         //this.anneedetude = 
     }
+
+    public FicheENS() {
+
+    }
 }

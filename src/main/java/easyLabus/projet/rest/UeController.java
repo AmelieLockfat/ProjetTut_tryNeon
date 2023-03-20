@@ -1,5 +1,7 @@
 package easyLabus.projet.rest;
 
+import easyLabus.projet.entity.Enseignement;
+import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
 import easyLabus.projet.service.UeService;
@@ -59,5 +61,21 @@ public class UeController {
         @PathVariable String codeue) {
 
         return ueService.getFicheUE(codeue);
+    }
+
+    @GetMapping(path = "{codeue}/addEnseignement")
+    public Enseignement addEnseingment(
+            @PathVariable String codeue,
+    @RequestParam(required = true) String codeens)
+    {
+        return ueService.addEnseignement(codeue,codeens);
+    }
+
+    @PutMapping(path = "{codeue}/delEnseignement")
+    public Enseignement delEnseignement(
+            @PathVariable String codeue,
+            @RequestParam(required = true) String codeens) {
+
+        return ueService.delEnseignement(codeue,codeens);
     }
 }

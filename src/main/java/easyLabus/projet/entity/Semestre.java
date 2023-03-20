@@ -31,6 +31,10 @@ public class Semestre {
         this.intituleniveau = niveau.getIntituleniveau();
     }
 
+    public Semestre() {
+
+    }
+
     public Integer getIdsemestre() {
         return idsemestre;
     }

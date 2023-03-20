@@ -3,6 +3,7 @@ package easyLabus.projet.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import easyLabus.projet.entity.Enseignement;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +35,15 @@ public class UeService {
     }
 
     @Transactional
+    public Enseignement delEnseignement(String codeue,String codeens) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var ue = ueDao.findById(codeue).orElseThrow();
+        ue.delEnseignement(ENS);
+        enseignementDao.delete(ENS);
+        return ENS;
+    }
+
+    @Transactional
     public Ue creerUe (String codeue, String intituleue, int idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
         if (ueDao.existsById(codeue)){
             return null;
@@ -46,6 +56,17 @@ public class UeService {
             semestreDao.save(SEM);
             return UE;
         }
+    }
+
+    @Transactional
+    public Enseignement addEnseignement(String codeue, String codeens) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var ue = ueDao.findById(codeue).orElseThrow();
+        ue.addEnseignement(ENS);
+        ENS.setUe(ue);
+        enseignementDao.save(ENS);
+        ueDao.save(ue);
+        return ENS;
     }
 
     @Transactional

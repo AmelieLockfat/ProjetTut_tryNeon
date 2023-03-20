@@ -27,6 +27,10 @@ public class Niveau {
         this.nomorientation = orientation.getNomorientation();
     }
 
+    public Niveau() {
+
+    }
+
     public String getIntituleniveau() {
         return intituleniveau;
     }

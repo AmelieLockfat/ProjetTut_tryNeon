@@ -17,6 +17,10 @@ public class Diplome {
         this.intitulediplome = intitulediplome;
     }
 
+    public Diplome() {
+
+    }
+
     public String getIntitulediplome() {
         return intitulediplome;
     }

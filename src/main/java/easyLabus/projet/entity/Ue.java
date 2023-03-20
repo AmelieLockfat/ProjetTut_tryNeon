@@ -121,6 +121,10 @@ public class Ue {
         this.competenses = competenses;
     }
 
+    public Ue() {
+
+    }
+
     public  String getCodeue() {
         return codeue;
     }
