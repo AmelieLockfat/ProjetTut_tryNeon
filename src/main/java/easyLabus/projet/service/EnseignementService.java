@@ -10,20 +10,17 @@ import easyLabus.projet.dao.UeRepository;
 import easyLabus.projet.dao.PersonneinterneRepository;
 import easyLabus.projet.dao.FicheENSRepository;
 import easyLabus.projet.entity.Enseignement;
-import easyLabus.projet.entity.FicheENS;
 
 @Service
 public class EnseignementService {
     private final EnseignementRepository enseignementDao;
     private final UeRepository ueDao;
     private final PersonneinterneRepository personneinterneDao;
-    private final FicheENSRepository ficheENSDao;
 
-    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao,PersonneinterneRepository personneinterneDao, FicheENSRepository ficheENSDao) {
+    public EnseignementService(EnseignementRepository enseignementDao,UeRepository ueDao,PersonneinterneRepository personneinterneDao) {
         this.enseignementDao = enseignementDao;
         this.ueDao=ueDao;
         this.personneinterneDao=personneinterneDao;
-        this.ficheENSDao=ficheENSDao;
     }
 /*
     @Transactional
