@@ -31,7 +31,7 @@ public class FicheENSService {
         this.intervenantENSDao = intervenantENSDao;
     }
 
-    @Transactional
+  /*  @Transactional
     public FicheENS getFicheENS(String codeens, String annee){
         var ENS = enseignementDao.findById(codeens).orElseThrow();
         var FENS = new FicheENS(ENS);
@@ -57,5 +57,5 @@ public class FicheENSService {
         for (IntervenantENS intENS : FENS.getIntervenants()){
             intervenantENSDao.delete(intENS);
         }
-    }
+    }*/
 }

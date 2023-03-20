@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SemestreService {
@@ -18,10 +19,10 @@ public class SemestreService {
         this.semestreDao = semestreDao;
         this.niveauDao = niveauDao;
     }
-/*
+
     @Transactional(readOnly = true)
-    public ArrayList<Semestre> getSemestrebyNiveau (String intituleniveau){
+    public List<Semestre> getSemestrebyNiveau (String intituleniveau){
         var NIV = niveauDao.findById(intituleniveau).orElseThrow();
         return NIV.getSemestres();
-    } */
+    }
 }

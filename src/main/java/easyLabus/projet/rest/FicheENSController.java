@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/easyLabus/enseignement/fiche")
 public class FicheENSController {
-	private final FicheENSService ficheENSService;
+/*	private final FicheENSService ficheENSService;
 	// @Autowired
 	public FicheENSController(FicheENSService ficheENSService) {
 		this.ficheENSService = ficheENSService;
@@ -21,5 +21,5 @@ public class FicheENSController {
         @PathVariable String codeens) {
 
         return ficheENSService.getFicheENS(codeens);
-    }
+    }*/
 }

@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FicheENSRepository extends JpaRepository<FicheENS, Long> {
 
-    @Query("SELECT * "
+    /*@Query("SELECT * "
          + "FROM FicheENS "
          + "WHERE codeens = :codeens "
          + "AND anneedetude = :annee ")
-    public FicheENS ficheENSByYear(String codeens, String annee);
+    public FicheENS ficheENSByYear(String codeens, String annee);*/
 }
