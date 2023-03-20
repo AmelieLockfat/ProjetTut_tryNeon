@@ -1,5 +1,6 @@
 package easyLabus.projet.rest;
 
+import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
 import easyLabus.projet.service.PersonneinterneService;
 
@@ -59,5 +60,12 @@ public class PersonneinterneController {
         @RequestParam(required = true) String motdepasse) {
 
         return personneinterneService.identifiantsValid(identifiant, motdepasse);
+    }
+
+    @PutMapping(path = "{identifiant}/delPersonneinterne")
+    public void delPersonneinterne(
+            @PathVariable String identifiant)
+            {
+                personneinterneService.delPersonneinterne(identifiant);
     }
 }

@@ -72,10 +72,16 @@ public class UeController {
     }
 
     @PutMapping(path = "{codeue}/delEnseignement")
-    public Enseignement delEnseignement(
+    public Ue delEnseignement(
             @PathVariable String codeue,
             @RequestParam(required = true) String codeens) {
 
         return ueService.delEnseignement(codeue,codeens);
+    }
+
+    @PutMapping(path = "{codeue}/delUe")
+    public void delUe(
+            @PathVariable String codeue) {
+         ueService.delUe(codeue);
     }
 }

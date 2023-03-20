@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import easyLabus.projet.entity.Enseignement;
+import easyLabus.projet.entity.Personneinterne;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,12 +36,12 @@ public class UeService {
     }
 
     @Transactional
-    public Enseignement delEnseignement(String codeue,String codeens) {
+    public Ue delEnseignement(String codeue,String codeens) {
         var ENS = enseignementDao.findById(codeens).orElseThrow();
         var ue = ueDao.findById(codeue).orElseThrow();
         ue.delEnseignement(ENS);
         enseignementDao.delete(ENS);
-        return ENS;
+        return ue;
     }
 
     @Transactional
@@ -117,5 +118,19 @@ public class UeService {
     public FicheUE getFicheUE(String codeue){
         var UE = ueDao.findById(codeue).orElseThrow();
         return new FicheUE(UE);
+    }
+
+    public void delUe(String codeue) {
+        var ue = ueDao.findById(codeue).orElseThrow();
+        var L_ENS = ue.getEnseignements();
+        var L_L_PERS= new ArrayList<Personneinterne>();
+
+        for (Enseignement ens : L_ENS)
+        { for (Personneinterne PERS : ens.getPersonnesinternes())
+            {PERS.delEnseignement(ens);
+            }
+            enseignementDao.delete(ens); }
+        ueDao.delete(ue);
+
     }
 }

@@ -133,6 +133,7 @@ public class Ue {
         return intituleue;
     }
 
+
     public void setIntituleue(String intituleue) {
         this.intituleue = intituleue;
     }
