@@ -33,7 +33,7 @@ public class FicheENS {
     private Double heuretotalencadree;
 
     @OneToMany(mappedBy = "ficheENS")
-    private ArrayList<IntervenantENS> intervenants = new ArrayList<IntervenantENS>();
+    private List<IntervenantENS> intervenants = new ArrayList<IntervenantENS>();
 
     @Basic
     @Column(name = "codeue", nullable = false)
@@ -88,7 +88,7 @@ public class FicheENS {
         return idficheENS;
     }
 
-    public ArrayList<IntervenantENS> getIntervenants(){
+    public List<IntervenantENS> getIntervenants(){
         return intervenants;
     }
 

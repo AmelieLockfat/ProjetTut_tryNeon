@@ -18,10 +18,10 @@ public class SemestreService {
         this.semestreDao = semestreDao;
         this.niveauDao = niveauDao;
     }
-
+/*
     @Transactional(readOnly = true)
     public ArrayList<Semestre> getSemestrebyNiveau (String intituleniveau){
         var NIV = niveauDao.findById(intituleniveau).orElseThrow();
         return NIV.getSemestres();
-    }
+    } */
 }

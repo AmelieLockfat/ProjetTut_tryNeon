@@ -22,7 +22,7 @@ public class EnseignementService {
         this.ueDao=ueDao;
         this.personneinterneDao=personneinterneDao;
     }
-
+/*
     @Transactional
     public Enseignement creerEnseignement (String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
         if (enseignementDao.existsById(codeens)){
@@ -94,4 +94,10 @@ public class EnseignementService {
         personneinterneDao.save(PERS);
         return ENS;
     }
+
+    @Transactional(readOnly = true)
+    public FicheENS getFicheENS(String codeens){
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        return new FicheENS(ENS);
+    }*/
 }

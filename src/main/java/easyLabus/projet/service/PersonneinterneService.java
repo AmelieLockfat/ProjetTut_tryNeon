@@ -23,7 +23,7 @@ public class PersonneinterneService {
         this.niveauDao=niveauDao;
         this.personneinterneDao=personneinterneDao;
     }
-
+/*
     @Transactional(readOnly = true)
 	public Personneinterne getByIdPersonneinternes(String identifiant) {
 		var PERS = personneinterneDao.findById(identifiant).orElseThrow();
@@ -100,5 +100,5 @@ public class PersonneinterneService {
         personneinterneDao.delete(PERS);
     }
 
-
+*/
 }

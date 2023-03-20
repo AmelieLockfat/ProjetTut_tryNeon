@@ -24,7 +24,7 @@ public class Personneinterne {
     private Boolean estdirecteur = false;
 
     @Basic
-    @Column(name = "intituleniveau", insertable = false, nullable = true)
+    @Column(name = "intituleniveau", insertable = false,updatable = false, nullable = true)
     private String intituleniveau;
     
     @ManyToOne
@@ -44,7 +44,7 @@ public class Personneinterne {
 
     @ManyToMany
     @JoinTable(name="Enseigner", joinColumns = @JoinColumn(name="identifiant",referencedColumnName = "identifiant"),inverseJoinColumns = @JoinColumn(name="codeens",referencedColumnName = "codeens"))
-    private ArrayList<Enseignement> enseignementsss;
+    private List<Enseignement> enseignementsss;
 
     public Personneinterne(String identifiant, String motdepasse, String prenom, String nom) {
         this.identifiant = identifiant;
@@ -53,32 +53,28 @@ public class Personneinterne {
         this.nompers = nom;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom) {
-        this(identifiant, motdepasse, prenom, nom)
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String intituleniveau) {
+        this(identifiant, motdepasse, prenom, nom);
         this.intituleniveau = intituleniveau;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email) {
-        this(identifiant, motdepasse, prenom, nom);
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String intituleniveau, String email) {
+        this(identifiant, motdepasse, prenom, nom, intituleniveau);
         this.email = email;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel) {
-        this(identifiant, motdepasse, prenom, nom, email);
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String intituleniveau, String email, String numtel) {
+        this(identifiant, motdepasse, prenom, intituleniveau, nom, email);
         this.numtel = numtel;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String intituleniveau, String email, String numtel) {
-        this(identifiant, motdepasse, prenom, nom, email, numtel);
-    }
-
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, Boolean coordprivee) {
-        this(identifiant, motdepasse, prenom, nom, email, numtel, niveau);
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom,String intituleniveau, String email, String numtel, Boolean coordprivee) {
+        this(identifiant, motdepasse, prenom, nom, intituleniveau, email, numtel);
         this.coordprivee = coordprivee;
     }
 
-    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom, String email, String numtel, Niveau niveau, Boolean coordprivee, Boolean estdirecteur) {
-        this(identifiant, motdepasse, prenom, nom, email, numtel, niveau, coordprivee);
+    public Personneinterne(String identifiant, String motdepasse, String prenom, String nom,String intituleniveau, String email, String numtel, Boolean coordprivee, Boolean estdirecteur) {
+        this(identifiant, motdepasse, prenom, nom, intituleniveau, email, numtel, coordprivee);
         this.estdirecteur = estdirecteur;
     }
 
@@ -159,10 +155,10 @@ public class Personneinterne {
         this.coordprivee = !coordprivee;
     }
 
-    public ArrayList<Enseignement> getEnseignementsss() {
+    public List<Enseignement> getEnseignementsss() {
         return enseignementsss;
     }
-
+/*
     public void setEnseignementsss(ArrayList<Enseignement> enseignementsss) {
         this.enseignementsss = enseignementsss;
     }
@@ -177,5 +173,5 @@ public class Personneinterne {
 
     public boolean equals(Personneinterne personneinterne) {
         return this.identifiant.equals(personneinterne.getIdentifiant());
-    }
+    }*/
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/easyLabus/personneinterne")
+@RequestMapping(path = "/easyLabus/personneinternes")
 public class PersonneinterneController {
     private final PersonneinterneService personneinterneService;
 	// @Autowired
@@ -17,7 +17,7 @@ public class PersonneinterneController {
 		this.personneinterneService = personneinterneService;
 	}
 
-    @GetMapping(path = "{identifiant}")
+  /* @GetMapping(path = "{identifiant}")
     public Personneinterne getPers(
         @PathVariable String identifiant) {
         
@@ -67,5 +67,5 @@ public class PersonneinterneController {
             @PathVariable String identifiant)
             {
                 personneinterneService.delPersonneinterne(identifiant);
-    }
+    }*/
 }

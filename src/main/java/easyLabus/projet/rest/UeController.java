@@ -4,7 +4,7 @@ import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
-import easyLabus.projet.service.UeService;
+//import easyLabus.projet.service.UeService;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/easyLabus/ue")
 public class UeController {
-	private final UeService ueService;
+/*	private final UeService ueService;
 	// @Autowired
 	public UeController(UeService ueService) {
 		this.ueService = ueService;
@@ -83,5 +83,5 @@ public class UeController {
     public void delUe(
             @PathVariable String codeue) {
          ueService.delUe(codeue);
-    }
+    }*/
 }

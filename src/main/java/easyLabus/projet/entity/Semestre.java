@@ -3,6 +3,7 @@ package easyLabus.projet.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Semestre {
@@ -23,12 +24,11 @@ public class Semestre {
    private Niveau niveau;
 
     @OneToMany(mappedBy = "semestre")
-    private ArrayList<Ue> ues = new ArrayList<>();
+    private List<Ue> ues = new ArrayList<>();
 
-    public Semestre(int numsemestre, Niveau niveau) {
+    public Semestre(int numsemestre, String intituleniveau) {
         this.numsemestre = numsemestre;
-        this.niveau = niveau;
-        this.intituleniveau = niveau.getIntituleniveau();
+        this.intituleniveau = intituleniveau;
     }
 
     public Semestre() {
@@ -51,11 +51,11 @@ public class Semestre {
         return niveau;
     }
 
-    public ArrayList<Ue> getUes() {
+    public List<Ue> getUes() {
         return ues;
     }
 
-    public void setUes(ArrayList<Ue> ues) {
+   /* public void setUes(ArrayList<Ue> ues) {
         this.ues = ues;
     }
 
@@ -69,5 +69,5 @@ public class Semestre {
 
     public boolean equals(Semestre semestre) {
         return this.idsemestre==semestre.getIdsemestre();
-    }
+    } */
 }
