@@ -25,7 +25,7 @@ public class EnseignementService {
         this.personneinterneDao=personneinterneDao;
         this.ficheENSDao=ficheENSDao;
     }
-
+/*
     @Transactional
     public Enseignement creerEnseignement (String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
         if (enseignementDao.existsById(codeens)){
@@ -102,5 +102,5 @@ public class EnseignementService {
     public FicheENS getFicheENS(String codeens){
         var ENS = enseignementDao.findById(codeens).orElseThrow();
         return new FicheENS(ENS);
-    }
+    }*/
 }

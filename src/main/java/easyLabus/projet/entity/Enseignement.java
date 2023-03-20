@@ -26,10 +26,10 @@ public class Enseignement {
     private Double heuretotalencadree;
     
     @ManyToMany(mappedBy = "enseignementsss")
-    private ArrayList<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
+    private List<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
 
     @Basic
-    @Column(name = "codeue", insertable = false, nullable = false)
+    @Column(name = "codeue", insertable = false, updatable = false, nullable = false)
     private String codeue;
 
     @ManyToOne
@@ -55,44 +55,43 @@ public class Enseignement {
     @Column(name = "contenu", nullable = true)
     private String contenu;
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp){
         this.codeens = codeens;
         this.nomens = nomens;
         this.heurecm = heurecm;
         this.heuretd = heuretd;
         this.heuretp = heuretp;
         this.heuretotalencadree = heurecm + heuretd + heuretp;
-        this.ue = ue;
-        this.codeue = ue.getCodeue();
+        this.codeue=codeue;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp);
         this.contenu = contenu;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu);
         this.heuretravailperso = heuretravailperso;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso);
         this.coefficient = coefficient;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient);
         this.modalitesevaluation = modalitesevaluation;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation);
         this.prerequis = prerequis;
     }
 
-    public Enseignement (String codeens, String nomens, Ue ue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours){
-        this(codeens, nomens, ue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation, prerequis);
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours){
+        this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation, prerequis);
         this.planducours = planducours;
     }
 
@@ -200,10 +199,11 @@ public class Enseignement {
         this.codeue = ue.getCodeue();
     }
 
-    public ArrayList<Personneinterne> getPersonnesinternes() {
+    public List<Personneinterne> getPersonnesinternes() {
         return personnesinternes;
     }
 
+    /*
     public void setPersonnesinternes(ArrayList<Personneinterne> personnesinternes) {
         this.personnesinternes = personnesinternes;
     }
@@ -218,5 +218,5 @@ public class Enseignement {
 
     public boolean equals(Enseignement enseignement) {
         return this.codeens.equals(enseignement.getCodeens());
-    }
+    } */
 }

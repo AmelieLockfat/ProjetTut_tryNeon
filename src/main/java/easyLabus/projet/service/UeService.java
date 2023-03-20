@@ -28,7 +28,7 @@ public class UeService {
         this.ficheUEDao=ficheUEDao;
         this.semestreDao=semestreDao;
     }
-
+/*
     @Transactional(readOnly = true)
     public ArrayList<Ue> getUeBySemestre (Long idsemestre){
         var SEM = semestreDao.findById(idsemestre).orElseThrow();
@@ -85,9 +85,9 @@ public class UeService {
         if (volumprojet!=null && volumprojet!=UE.getVolumprojet()){
             UE.setVolumprojet(volumprojet);
         }
-        if (volumstage!=null && volumstage!=UE.getVolumstage()){
-            UE.setVolumstage(volumstage);
-        }
+       // if (volumstage!=null && volumstage!=UE.getVolumstage()){
+         //   UE.setVolumstage(volumstage);
+       // }
         if (modalitescontrole!=null && !modalitescontrole.equals(UE.getModalitescontrole())){
             UE.setModalitescontrole(modalitescontrole);
         }
@@ -132,5 +132,5 @@ public class UeService {
             enseignementDao.delete(ens); }
         ueDao.delete(ue);
 
-    }
+    }*/
 }

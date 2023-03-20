@@ -44,7 +44,7 @@ public class FicheUE {
     private Integer numsemestre;
 
     @OneToMany(mappedBy = "ficheUE")
-    private ArrayList<Contenu> contenus = new ArrayList<Contenu>();
+    private List<Contenu> contenus = new ArrayList<Contenu>();
 
     @Basic
     @Column(name = "heurecm", insertable = false, nullable = false)
@@ -97,7 +97,7 @@ public class FicheUE {
         this.heuretp = ue.getHeuretp();
         this.volumtravailperso = ue.getVolumtravailperso();
         this.volumprojet = ue.getVolumprojet();
-        this.volumstage = ue.getVolumstage();
+       // this.volumstage = ue.getVolumstage();
         this.modalitescontrole = ue.getModalitescontrole();
         this.prerequis = ue.getPrerequis();
         this.bibliographiedebase = ue.getBibliographiedebase();
@@ -118,7 +118,7 @@ public class FicheUE {
         return idFicheUE;
     }
 
-    public ArrayList<Contenu> getContenus (){
+    public List<Contenu> getContenus (){
         return contenus;
     }
 
@@ -138,7 +138,7 @@ public class FicheUE {
         return intervenants;
     }
 
-    public void setIntervenants (ArrayList<IntervenantUE> intervenants){
+  /*  public void setIntervenants (ArrayList<IntervenantUE> intervenants){
         this.intervenants = intervenants;
     }
 
@@ -152,5 +152,5 @@ public class FicheUE {
 
     public FicheUE() {
 
-    }
+    } */
 }

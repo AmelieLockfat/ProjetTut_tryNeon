@@ -3,6 +3,7 @@ package easyLabus.projet.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Ue {
@@ -31,9 +32,9 @@ public class Ue {
     @Basic
     @Column(name = "volumprojet", nullable = true)
     private Double volumprojet;
-    @Basic
-    @Column(name = "volumstage", nullable = true)
-    private Double volumstage;
+    //@Basic
+    //@Column(name = "volumstage", nullable = true)
+    //private Double volumstage;
 
     @Basic
     @Column(name = "idsemestre",insertable = false,updatable = false)
@@ -44,7 +45,7 @@ public class Ue {
     private Semestre semestre;
 
     @OneToMany(mappedBy = "ue")
-    private ArrayList<Enseignement> enseignements = new ArrayList<>();
+    private List<Enseignement> enseignements = new ArrayList<>();
 
     @Basic
     @Column(name = "modalitescontrole", nullable = true)
@@ -65,10 +66,10 @@ public class Ue {
     @Column(name = "competenses", nullable = true)
     private String competenses;
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects) {
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects) {
         this.codeue = codeue;
         this.intituleue = intituleue;
-        this.semestre = semestre;
+        this.idsemestre = idsemestre;
         this.idsemestre = semestre.getIdsemestre();
         this.creditsects = creditsects;
         this.heurecm = 0.0;
@@ -76,48 +77,48 @@ public class Ue {
         this.heuretp = 0.0;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso) {
-        this(codeue, intituleue, semestre, creditsects);
+    public Ue(String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso) {
+        this(codeue, intituleue, idsemestre, creditsects);
         this.volumtravailperso = volumtravailperso;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso);
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso);
         this.volumprojet = volumprojet;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet);
-        this.volumstage = volumstage;
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet);
+        //this.volumstage = volumstage;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage);
+    public Ue(String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage);
         this.modalitescontrole = modalitescontrole;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole);
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole);
         this.prerequis = prerequis;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis);
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis);
         this.bibliographiedebase = bibliographiedebase;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase);
+    public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase);
         this.ordreue = ordreue;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue);
+    public Ue(String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue);
         this.motcles = motcles;
     }
 
-    public Ue(String codeue, String intituleue, Semestre semestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
-        this(codeue, intituleue, semestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue, motcles);
+    public Ue(String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
+        this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet, volumstage, modalitescontrole, prerequis, bibliographiedebase, ordreue, motcles);
         this.competenses = competenses;
     }
 
@@ -174,13 +175,13 @@ public class Ue {
         this.volumprojet = volumprojet;
     }
 
-    public Double getVolumstage() {
+   /* public Double getVolumstage() {
         return volumstage;
     }
 
-    public void setVolumstage(Double volumstage) {
-        this.volumstage = volumstage;
-    }
+    //public void setVolumstage(Double volumstage) {
+      //  this.volumstage = volumstage;
+    //}*/
 
     public Long getIdsemestre() {
         return idsemestre;
@@ -243,7 +244,7 @@ public class Ue {
         this.competenses = competenses;
     }
 
-    public void addEnseignement(Enseignement enseignement) {
+   /* public void addEnseignement(Enseignement enseignement) {
         enseignements.add(enseignement);
         heurecm += enseignement.getHeurecm();
         heuretd += enseignement.getHeuretd();
@@ -275,5 +276,5 @@ public class Ue {
 
     public boolean equals(Ue ue) {
         return this.codeue.equals(ue.getCodeue());
-    }
+    }*/
 }

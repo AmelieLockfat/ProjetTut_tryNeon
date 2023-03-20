@@ -3,6 +3,7 @@ package easyLabus.projet.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Orientation {
@@ -19,12 +20,11 @@ public class Orientation {
     private Diplome diplome;
 
     @OneToMany(mappedBy = "orientation")
-    private ArrayList<Niveau> niveaus = new ArrayList<>();
+    private List<Niveau> niveaus = new ArrayList<>();
 
-    public Orientation(String nomOrientation, Diplome diplome) {
+    public Orientation(String nomOrientation, String initulediplome) {
         this.nomorientation = nomOrientation;
-        this.diplome = diplome;
-        this.intitulediplome = diplome.getIntitulediplome();
+        this.intitulediplome = initulediplome;
     }
 
     public Orientation() {
@@ -52,10 +52,10 @@ public class Orientation {
         this.intitulediplome = diplome.getIntitulediplome();
     }
 
-    public ArrayList<Niveau> getNiveaus() {
+    public List<Niveau> getNiveaus() {
         return niveaus;
     }
-
+/*
     public void setNiveaus(ArrayList<Niveau> niveaus) {
         this.niveaus = niveaus;
     }
@@ -70,5 +70,5 @@ public class Orientation {
 
     public boolean equals(Orientation orientation) {
         return this.nomorientation.equals(orientation.getNomorientation());
-    }
+    } */
 }

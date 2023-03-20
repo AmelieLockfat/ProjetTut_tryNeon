@@ -16,7 +16,7 @@ public class EnseignementController {
 	public EnseignementController(EnseignementService enseignementService) {
 		this.enseignementService = enseignementService;
 	}
-
+/*
 	@PostMapping(path = "new")
     public Enseignement creerEns(
         @RequestParam(required = true) String codeens, 
@@ -73,5 +73,5 @@ public class EnseignementController {
         @PathVariable String codeens) {
 
         return enseignementService.getFicheENS(codeens);
-    }
+    }*/
 }
