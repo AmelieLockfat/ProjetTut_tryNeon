@@ -149,4 +149,8 @@ public class FicheUE {
     public void delIntervenant (IntervenantUE intervenant){
         intervenants.remove(intervenant);
     }
+
+    public FicheUE() {
+
+    }
 }

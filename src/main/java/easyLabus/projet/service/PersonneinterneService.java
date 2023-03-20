@@ -2,6 +2,7 @@ package easyLabus.projet.service;
 
 import java.util.List;
 
+import easyLabus.projet.entity.Enseignement;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,4 +89,16 @@ public class PersonneinterneService {
         }
         return false;
     }
+
+    @Transactional
+    public void delPersonneinterne(String identifiant) {
+        var PERS = personneinterneDao.findById(identifiant).orElseThrow();
+        var L_ENS = PERS.getEnseignementsss();
+        for (Enseignement ens : L_ENS){
+            ens.delPersonneinterne(PERS);
+        }
+        personneinterneDao.delete(PERS);
+    }
+
+
 }

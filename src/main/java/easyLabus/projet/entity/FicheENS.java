@@ -103,4 +103,8 @@ public class FicheENS {
     public void delIntervenant(IntervenantENS intervenant){
         intervenants.remove(intervenant);
     }
+
+    public FicheENS() {
+
+    }
 }

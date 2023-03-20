@@ -96,6 +96,10 @@ public class Enseignement {
         this.planducours = planducours;
     }
 
+    public Enseignement() {
+
+    }
+
     public String getCodeens() {
         return codeens;
     }

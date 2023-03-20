@@ -85,6 +85,10 @@ public class Personneinterne {
         this.estdirecteur = estdirecteur;
     }
 
+    public Personneinterne() {
+
+    }
+
     public String getIdentifiant() {
         return identifiant;
     }

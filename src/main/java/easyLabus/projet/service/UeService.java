@@ -3,6 +3,8 @@ package easyLabus.projet.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import easyLabus.projet.entity.Enseignement;
+import easyLabus.projet.entity.Personneinterne;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,24 @@ public class UeService {
     }
 
     @Transactional
+    public Ue delEnseignement(String codeue,String codeens) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var ue = ueDao.findById(codeue).orElseThrow();
+        ue.delEnseignement(ENS);
+        enseignementDao.delete(ENS);
+        return ue;
+    }
+
+    @Transactional
+    public Ue delEnseignement(String codeue,String codeens) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var ue = ueDao.findById(codeue).orElseThrow();
+        ue.delEnseignement(ENS);
+        enseignementDao.delete(ENS);
+        return ue;
+    }
+
+    @Transactional
     public Ue creerUe (String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
         if (ueDao.existsById(codeue)){
             return null;
@@ -46,6 +66,17 @@ public class UeService {
             semestreDao.save(SEM);
             return UE;
         }
+    }
+
+    @Transactional
+    public Enseignement addEnseignement(String codeue, String codeens) {
+        var ENS = enseignementDao.findById(codeens).orElseThrow();
+        var ue = ueDao.findById(codeue).orElseThrow();
+        ue.addEnseignement(ENS);
+        ENS.setUe(ue);
+        enseignementDao.save(ENS);
+        ueDao.save(ue);
+        return ENS;
     }
 
     @Transactional
@@ -96,5 +127,19 @@ public class UeService {
     public FicheUE getFicheUE(String codeue){
         var UE = ueDao.findById(codeue).orElseThrow();
         return new FicheUE(UE);
+    }
+
+    public void delUe(String codeue) {
+        var ue = ueDao.findById(codeue).orElseThrow();
+        var L_ENS = ue.getEnseignements();
+        var L_L_PERS= new ArrayList<Personneinterne>();
+
+        for (Enseignement ens : L_ENS)
+        { for (Personneinterne PERS : ens.getPersonnesinternes())
+            {PERS.delEnseignement(ens);
+            }
+            enseignementDao.delete(ens); }
+        ueDao.delete(ue);
+
     }
 }

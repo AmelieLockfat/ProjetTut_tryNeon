@@ -121,6 +121,10 @@ public class Ue {
         this.competenses = competenses;
     }
 
+    public Ue() {
+
+    }
+
     public  String getCodeue() {
         return codeue;
     }
@@ -128,6 +132,7 @@ public class Ue {
     public String getIntituleue() {
         return intituleue;
     }
+
 
     public void setIntituleue(String intituleue) {
         this.intituleue = intituleue;

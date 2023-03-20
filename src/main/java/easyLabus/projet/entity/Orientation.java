@@ -27,6 +27,10 @@ public class Orientation {
         this.intitulediplome = diplome.getIntitulediplome();
     }
 
+    public Orientation() {
+
+    }
+
     public String getNomorientation() {
         return nomorientation;
     }
