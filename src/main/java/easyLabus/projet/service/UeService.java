@@ -28,13 +28,13 @@ public class UeService {
     }
 
     @Transactional(readOnly = true)
-    public ArrayList<Ue> getUeBySemestre (int idsemestre){
+    public ArrayList<Ue> getUeBySemestre (Long idsemestre){
         var SEM = semestreDao.findById(idsemestre).orElseThrow();
         return SEM.getUes();
     }
 
     @Transactional
-    public Ue creerUe (String codeue, String intituleue, int idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
+    public Ue creerUe (String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole, String prerequis, String bibliographiedebase, Integer ordreue, String motcles, String competenses) {
         if (ueDao.existsById(codeue)){
             return null;
         }

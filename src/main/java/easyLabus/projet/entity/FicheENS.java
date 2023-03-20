@@ -7,8 +7,14 @@ import java.util.*;
 @Entity
 public class FicheENS {
     @Id
+    @GeneratedValue
+    @Column(name = "idficheENS")
+    private Long idficheENS;
+
+    @Basic
     @Column(name = "codeens")
     private String codeens;
+
     @Basic
     @Column(name = "nomens", nullable = false)
     private String nomens;
@@ -26,9 +32,8 @@ public class FicheENS {
     @Column(name = "heuretotalencadree", nullable = false)
     private Double heuretotalencadree;
 
-    @Basic
-    @Column(name = "intervenants", nullable = false)
-    private HashMap<String,String[]> intervenants = new HashMap<String,String[]>();
+    @OneToMany(mappedBy = "ficheENS")
+    private ArrayList<IntervenantENS> intervenants = new ArrayList<IntervenantENS>();
 
     @Basic
     @Column(name = "codeue", nullable = false)
@@ -67,10 +72,6 @@ public class FicheENS {
         this.heuretd = enseignement.getHeuretd();
         this.heuretp = enseignement.getHeuretp();
         this.heuretotalencadree = enseignement.getHeuretotalencadree();
-        for (Personneinterne pers : enseignement.getPersonnesinternes()){
-            String[] coords = {pers.getEmail(),pers.getNumtel()};
-            intervenants.put(pers.getPrenompers()+" "+pers.getNompers(), coords);
-        }
         this.heuretravailperso = enseignement.getHeuretravailperso();
         this.coefficient = enseignement.getCoefficient();
         this.prerequis = enseignement.getPrerequis();
@@ -80,6 +81,26 @@ public class FicheENS {
         this.codeue = ue.getCodeue();
         this.intituleue = ue.getIntituleue();
         this.numsemestre = ue.getSemestre().getNumsemestre();
-        //this.anneedetude = 
+        //this.anneedetude = ???????????????????
+    }
+
+    public Long getIdFicheENS (){
+        return idficheENS;
+    }
+
+    public ArrayList<IntervenantENS> getIntervenants(){
+        return intervenants;
+    }
+
+    public void setIntervenants(ArrayList<IntervenantENS> intervenants){
+        this.intervenants = intervenants;
+    }
+
+    public void addIntervenant(IntervenantENS intervenant){
+        intervenants.add(intervenant);
+    }
+
+    public void delIntervenant(IntervenantENS intervenant){
+        intervenants.remove(intervenant);
     }
 }

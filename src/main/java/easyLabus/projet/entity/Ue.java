@@ -37,7 +37,7 @@ public class Ue {
 
     @Basic
     @Column(name = "idsemestre",insertable = false,updatable = false)
-    private Integer idsemestre;
+    private Long idsemestre;
 
     @ManyToOne
     @JoinColumn (name="idsemestre", referencedColumnName ="idsemestre",nullable=false )
@@ -177,7 +177,7 @@ public class Ue {
         this.volumstage = volumstage;
     }
 
-    public Integer getIdsemestre() {
+    public Long getIdsemestre() {
         return idsemestre;
     }
 

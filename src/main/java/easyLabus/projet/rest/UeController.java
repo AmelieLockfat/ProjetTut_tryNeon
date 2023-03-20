@@ -21,7 +21,7 @@ public class UeController {
     public Ue creerUe(
         @RequestParam(required = true) String codeue, 
         @RequestParam(required = true) String intituleue,  
-        @RequestParam(required = true) int idsemestre,  
+        @RequestParam(required = true) Long idsemestre,  
         @RequestParam(required = true) Integer creditsects,  
         @RequestParam(required = true) Double volumtravailperso,  
         @RequestParam(required = true) Double volumprojet,  

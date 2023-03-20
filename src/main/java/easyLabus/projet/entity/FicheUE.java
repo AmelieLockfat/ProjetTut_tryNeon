@@ -7,8 +7,12 @@ import java.util.*;
 @Entity
 public class FicheUE {
     @Id
+    @GeneratedValue
+    @Column(name = "idficheUE")
+    private Long idFicheUE;
+
     @Column(name = "codeue")
-    private  String codeue;
+    private String codeue;
     @Basic
     @Column(name = "intituleue", nullable = false)
     private String intituleue;
@@ -20,9 +24,8 @@ public class FicheUE {
     @Column(name = "responsableue", nullable = false)
     private String responsableue;
 
-    @Basic
-    @Column(name = "intervenants", nullable = false)
-    private ArrayList<String> intervenants = new ArrayList<String>();
+    @OneToMany(mappedBy = "ficheUE")
+    private ArrayList<IntervenantUE> intervenants = new ArrayList<IntervenantUE>();
 
     @Basic
     @Column(name = "intitulediplome", nullable = false)
@@ -40,9 +43,8 @@ public class FicheUE {
     @Column(name = "numsemestre", nullable = false)
     private Integer numsemestre;
 
-    @Basic
-    @Column(name = "enseignements", nullable = false)
-    private HashMap<String,String> enseignements = new HashMap<String,String>();
+    @OneToMany(mappedBy = "ficheUE")
+    private ArrayList<Contenu> contenus = new ArrayList<Contenu>();
 
     @Basic
     @Column(name = "heurecm", insertable = false, nullable = false)
@@ -102,12 +104,6 @@ public class FicheUE {
         this.ordreue = ue.getOrdreue();
         this.motcles = ue.getMotcles();
         this.competenses = ue.getCompetenses();
-        for (Enseignement ens : ue.getEnseignements()){
-            enseignements.put(ens.getNomens(), ens.getContenu());
-            for (Personneinterne pers : ens.getPersonnesinternes()){
-                intervenants.add(pers.getPrenompers()+" "+pers.getNompers());
-            }
-        }
         Semestre sem = ue.getSemestre();
         this.numsemestre = sem.getNumsemestre();
         Niveau niv = sem.getNiveau();
@@ -116,5 +112,41 @@ public class FicheUE {
         this.nomorientation = ori.getNomorientation();
         this.intitulediplome = ori.getDiplome().getIntitulediplome();
         //this.anneedetude = 
+    }
+
+    public Long getIdFicheUE (){
+        return idFicheUE;
+    }
+
+    public ArrayList<Contenu> getContenus (){
+        return contenus;
+    }
+
+    public void setContenus (ArrayList<Contenu> contenus){
+        this.contenus = contenus;
+    }
+
+    public void addContenu (Contenu contenu){
+        contenus.add(contenu);
+    }
+
+    public void delContenu (Contenu contenu){
+        contenus.remove(contenu);
+    }
+
+    public ArrayList<IntervenantUE> getIntervenants (){
+        return intervenants;
+    }
+
+    public void setIntervenants (ArrayList<IntervenantUE> intervenants){
+        this.intervenants = intervenants;
+    }
+
+    public void addIntervenant (IntervenantUE intervenant){
+        intervenants.add(intervenant);
+    }
+
+    public void delIntervenant (IntervenantUE intervenant){
+        intervenants.remove(intervenant);
     }
 }

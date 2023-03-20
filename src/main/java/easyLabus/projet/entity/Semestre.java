@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 @Entity
 public class Semestre {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue
     @Column(name = "idsemestre")
-    private Integer idsemestre;
+    private Long idsemestre;
     @Basic
     @Column(name = "numsemestre", nullable = false)
     private Integer numsemestre;
@@ -31,7 +31,7 @@ public class Semestre {
         this.intituleniveau = niveau.getIntituleniveau();
     }
 
-    public Integer getIdsemestre() {
+    public Long getIdsemestre() {
         return idsemestre;
     }
 
