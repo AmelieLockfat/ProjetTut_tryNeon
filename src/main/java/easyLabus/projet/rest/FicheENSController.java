@@ -16,10 +16,10 @@ public class FicheENSController {
 		this.ficheENSService = ficheENSService;
 	}
 
-    @GetMapping(path = "{codeens}")
+    /*@GetMapping(path = "{codeens}")
     public FicheENS getFicheActu(
         @PathVariable String codeens) {
 
         return ficheENSService.getFicheENS(codeens);
-    }
+    }*/
 }
