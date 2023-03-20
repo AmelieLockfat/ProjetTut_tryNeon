@@ -25,7 +25,7 @@ public class Enseignement {
     @Column(name = "heuretotalencadree", nullable = false)
     private Double heuretotalencadree;
     
-    @ManyToMany(mappedBy = "Enseignementsss")
+    @ManyToMany(mappedBy = "enseignementsss")
     private ArrayList<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
 
     @Basic

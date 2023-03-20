@@ -10,7 +10,7 @@ public class Diplome {
     @Column(name = "intitulediplome")
     private String intitulediplome;
 
-    @OneToMany(mappedBy = "Diplomebyintitulediplome")
+    @OneToMany(mappedBy = "diplome")
     private ArrayList<Orientation> orientations = new ArrayList<>();
 
     public Diplome(String intitulediplome) {
