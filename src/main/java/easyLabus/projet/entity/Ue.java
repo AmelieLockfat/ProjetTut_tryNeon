@@ -32,19 +32,19 @@ public class Ue {
     @Basic
     @Column(name = "volumprojet", nullable = true)
     private Double volumprojet;
-    //@Basic
-    //@Column(name = "volumstage", nullable = true)
-    //private Double volumstage;
+    @Basic
+    @Column(name = "volumstage", nullable = true)
+    private Double volumstage;
 
     @Basic
-    @Column(name = "idsemestre",insertable = false,updatable = false)
+    @Column(name = "idsemestre")
     private Long idsemestre;
 
     @ManyToOne
     @JoinColumn (name="idsemestre", referencedColumnName ="idsemestre",nullable=false )
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "ue")
+    @OneToMany(mappedBy = "ue", cascade=CascadeType.REMOVE)
     private List<Enseignement> enseignements = new ArrayList<>();
 
     @Basic
@@ -70,7 +70,6 @@ public class Ue {
         this.codeue = codeue;
         this.intituleue = intituleue;
         this.idsemestre = idsemestre;
-        this.idsemestre = semestre.getIdsemestre();
         this.creditsects = creditsects;
         this.heurecm = 0.0;
         this.heuretd = 0.0;
@@ -175,21 +174,20 @@ public class Ue {
         this.volumprojet = volumprojet;
     }
 
-   /* public Double getVolumstage() {
+    public Double getVolumstage() {
         return volumstage;
     }
 
-    //public void setVolumstage(Double volumstage) {
-      //  this.volumstage = volumstage;
-    //}*/
+    public void setVolumstage(Double volumstage) {
+        this.volumstage = volumstage;
+    }
 
     public Long getIdsemestre() {
         return idsemestre;
     }
 
-    public void setSemestre(Semestre semestre) {
-        this.semestre = semestre;
-        this.idsemestre = semestre.getIdsemestre();
+    public void setIdSemestre(Long idsemestre) {
+        this.idsemestre = idsemestre;
     }
 
     public Semestre getSemestre() {
@@ -244,37 +242,11 @@ public class Ue {
         this.competenses = competenses;
     }
 
-   /* public void addEnseignement(Enseignement enseignement) {
-        enseignements.add(enseignement);
-        heurecm += enseignement.getHeurecm();
-        heuretd += enseignement.getHeuretd();
-        heuretp += enseignement.getHeuretp();
-    }
-
-    public void delEnseignement(Enseignement enseignement) {
-        enseignements.remove(enseignement);
-        heurecm -= enseignement.getHeurecm();
-        heuretd -= enseignement.getHeuretd();
-        heuretp -= enseignement.getHeuretp();
-    }
-
-    public ArrayList<Enseignement> getEnseignements() {
+    public List<Enseignement> getEnseignements (){
         return enseignements;
     }
 
-    public void setEnseignements(ArrayList<Enseignement> enseignements) {
-        this.enseignements = enseignements;
-        heurecm = 0.0;
-        heuretd = 0.0;
-        heuretp = 0.0;
-        for (Enseignement ens:enseignements) {
-            heurecm += ens.getHeurecm();
-            heuretd += ens.getHeuretd();
-            heuretp += ens.getHeuretp();
-        }
-    }
-
-    public boolean equals(Ue ue) {
+    public boolean equals (Ue ue){
         return this.codeue.equals(ue.getCodeue());
-    }*/
+    }
 }

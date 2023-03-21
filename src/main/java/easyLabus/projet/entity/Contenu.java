@@ -10,7 +10,7 @@ public class Contenu {
     private Long idcontenu;
 
     @Basic
-    @Column(name = "idFicheUE",insertable = false,updatable = false)
+    @Column(name = "idFicheUE",updatable = false)
     private Long idFicheUE;
 
     @ManyToOne
@@ -24,9 +24,8 @@ public class Contenu {
     @Column(name = "contenu", nullable = false)
     private String contenu;
 
-    public Contenu(FicheUE ficheUE, Enseignement enseignement) {
-        this.ficheUE = ficheUE;
-        this.idFicheUE = ficheUE.getIdFicheUE();
+    public Contenu(Long idFicheUE, Enseignement enseignement) {
+        this.idFicheUE = idFicheUE;
         this.nomens = enseignement.getNomens();
         this.contenu = enseignement.getContenu();
     }

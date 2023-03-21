@@ -10,7 +10,7 @@ public class IntervenantENS {
     private Long idintervenant;
 
     @Basic
-    @Column(name = "idFicheENS",insertable = false,updatable = false)
+    @Column(name = "idFicheENS",updatable = false)
     private Long idFicheENS;
 
     @ManyToOne
@@ -34,13 +34,12 @@ public class IntervenantENS {
     @Column(name="coordprivee", nullable = false)
     private Boolean coordprivee = true;
 
-    public IntervenantENS(FicheENS ficheENS, Personneinterne pers) {
-        this.ficheENS = ficheENS;
-        this.idFicheENS = ficheENS.getIdFicheENS();
+    public IntervenantENS(Long idFicheENS, Personneinterne pers) {
+        this.idFicheENS = idFicheENS;
         this.prenompers = pers.getPrenompers();
         this.nompers = pers.getNompers();
         this.numtel = pers.getNumtel();
         this.email = pers.getEmail();
-        this.coordprivee = pers.getCoordPrivee();
+        this.coordprivee = pers.getCoordprivee();
     }
 }

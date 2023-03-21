@@ -24,8 +24,8 @@ public class FicheUE {
     @Column(name = "responsableue", nullable = false)
     private String responsableue;
 
-    @OneToMany(mappedBy = "ficheUE")
-    private ArrayList<IntervenantUE> intervenants = new ArrayList<IntervenantUE>();
+    @OneToMany(mappedBy = "ficheUE", cascade=CascadeType.REMOVE)
+    private List<IntervenantUE> intervenants = new ArrayList<IntervenantUE>();
 
     @Basic
     @Column(name = "intitulediplome", nullable = false)
@@ -43,7 +43,7 @@ public class FicheUE {
     @Column(name = "numsemestre", nullable = false)
     private Integer numsemestre;
 
-    @OneToMany(mappedBy = "ficheUE")
+    @OneToMany(mappedBy = "ficheUE", cascade=CascadeType.REMOVE)
     private List<Contenu> contenus = new ArrayList<Contenu>();
 
     @Basic
@@ -122,35 +122,11 @@ public class FicheUE {
         return contenus;
     }
 
-    public void setContenus (ArrayList<Contenu> contenus){
-        this.contenus = contenus;
-    }
-
-    public void addContenu (Contenu contenu){
-        contenus.add(contenu);
-    }
-
-    public void delContenu (Contenu contenu){
-        contenus.remove(contenu);
-    }
-
-    public ArrayList<IntervenantUE> getIntervenants (){
+    public List<IntervenantUE> getIntervenants (){
         return intervenants;
     }
-
-  /*  public void setIntervenants (ArrayList<IntervenantUE> intervenants){
-        this.intervenants = intervenants;
-    }
-
-    public void addIntervenant (IntervenantUE intervenant){
-        intervenants.add(intervenant);
-    }
-
-    public void delIntervenant (IntervenantUE intervenant){
-        intervenants.remove(intervenant);
-    }
-
+    
     public FicheUE() {
 
-    } */
+    }
 }

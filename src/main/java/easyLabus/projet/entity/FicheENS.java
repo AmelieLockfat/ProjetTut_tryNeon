@@ -32,7 +32,7 @@ public class FicheENS {
     @Column(name = "heuretotalencadree", nullable = false)
     private Double heuretotalencadree;
 
-    @OneToMany(mappedBy = "ficheENS")
+    @OneToMany(mappedBy = "ficheENS", cascade=CascadeType.REMOVE)
     private List<IntervenantENS> intervenants = new ArrayList<IntervenantENS>();
 
     @Basic
@@ -90,18 +90,6 @@ public class FicheENS {
 
     public List<IntervenantENS> getIntervenants(){
         return intervenants;
-    }
-
-    public void setIntervenants(ArrayList<IntervenantENS> intervenants){
-        this.intervenants = intervenants;
-    }
-
-    public void addIntervenant(IntervenantENS intervenant){
-        intervenants.add(intervenant);
-    }
-
-    public void delIntervenant(IntervenantENS intervenant){
-        intervenants.remove(intervenant);
     }
 
     public FicheENS() {

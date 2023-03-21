@@ -25,11 +25,11 @@ public class Enseignement {
     @Column(name = "heuretotalencadree", nullable = false)
     private Double heuretotalencadree;
     
-    @ManyToMany(mappedBy = "enseignementsss")
+    @ManyToMany(mappedBy = "enseignements")
     private List<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
 
     @Basic
-    @Column(name = "codeue", insertable = false, updatable = false, nullable = false)
+    @Column(name = "codeue", updatable = false, nullable = false)
     private String codeue;
 
     @ManyToOne
@@ -111,6 +111,18 @@ public class Enseignement {
         this.nomens = nomens;
     }
 
+    public String getCodeue(){
+        return codeue;
+    }
+
+    public Ue getUe() {
+        return ue;
+    }
+
+    public void setCodeue(String codeue) {
+        this.codeue = codeue;
+    }
+
     public Double getHeurecm() {
         return heurecm;
     }
@@ -190,33 +202,11 @@ public class Enseignement {
         this.contenu = contenu;
     }
 
-    public Ue getUe() {
-        return ue;
-    }
-
-    public void setUe(Ue ue) {
-        this.ue = ue;
-        this.codeue = ue.getCodeue();
-    }
-
     public List<Personneinterne> getPersonnesinternes() {
         return personnesinternes;
     }
 
-    /*
-    public void setPersonnesinternes(ArrayList<Personneinterne> personnesinternes) {
-        this.personnesinternes = personnesinternes;
-    }
-
-    public void addPersonneinterne(Personneinterne personneinterne) {
-        personnesinternes.add(personneinterne);
-    }
-
-    public void delPersonneinterne(Personneinterne personneinterne) {
-        personnesinternes.remove(personneinterne);
-    }
-
     public boolean equals(Enseignement enseignement) {
         return this.codeens.equals(enseignement.getCodeens());
-    } */
+    }
 }

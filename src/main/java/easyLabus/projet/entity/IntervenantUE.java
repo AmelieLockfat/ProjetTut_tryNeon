@@ -10,7 +10,7 @@ public class IntervenantUE {
     private Long idintervenant;
 
     @Basic
-    @Column(name = "idFicheUE",insertable = false,updatable = false)
+    @Column(name = "idFicheUE",updatable = false)
     private Long idFicheUE;
 
     @ManyToOne
@@ -24,9 +24,8 @@ public class IntervenantUE {
     @Column(name = "nompers", nullable = false)
     private String nompers;
 
-    public IntervenantUE(FicheUE ficheUE, Personneinterne pers) {
-        this.ficheUE = ficheUE;
-        this.idFicheUE = ficheUE.getIdFicheUE();
+    public IntervenantUE(Long idFicheUE, Personneinterne pers) {
+        this.idFicheUE = idFicheUE;
         this.prenompers = pers.getPrenompers();
         this.nompers = pers.getNompers();
     }

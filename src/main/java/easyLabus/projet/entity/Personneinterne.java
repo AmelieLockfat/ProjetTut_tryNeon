@@ -44,7 +44,7 @@ public class Personneinterne {
 
     @ManyToMany
     @JoinTable(name="Enseigner", joinColumns = @JoinColumn(name="identifiant",referencedColumnName = "identifiant"),inverseJoinColumns = @JoinColumn(name="codeens",referencedColumnName = "codeens"))
-    private List<Enseignement> enseignementsss;
+    private List<Enseignement> enseignements;
 
     public Personneinterne(String identifiant, String motdepasse, String prenom, String nom) {
         this.identifiant = identifiant;
@@ -110,6 +110,14 @@ public class Personneinterne {
         this.nompers = nompers;
     }
 
+    public boolean getCoordprivee() {
+        return coordprivee;
+    }
+
+    public void modifCoordprivee() {
+        this.coordprivee = !coordprivee;
+    }
+
     public Boolean getEstdirecteur() {
         return estdirecteur;
     }
@@ -126,9 +134,8 @@ public class Personneinterne {
         return niveau;
     }
 
-    public void setNiveau(Niveau niveau) {
-        this.niveau = niveau;
-        this.intituleniveau = niveau.getIntituleniveau();
+    public void setIntituleniveau(String intituleniveau) {
+        this.intituleniveau = intituleniveau;
     }
 
     public String getNumtel() {
@@ -147,31 +154,11 @@ public class Personneinterne {
         this.email = email;
     }
 
-    public boolean getCoordPrivee() {
-        return coordprivee;
+    public List<Enseignement> getEnseignements() {
+        return enseignements;
     }
 
-    public void modifCoordPrivee() {
-        this.coordprivee = !coordprivee;
+    public boolean equals (Personneinterne pers){
+        return this.identifiant.equals(pers.getIdentifiant());
     }
-
-    public List<Enseignement> getEnseignementsss() {
-        return enseignementsss;
-    }
-/*
-    public void setEnseignementsss(ArrayList<Enseignement> enseignementsss) {
-        this.enseignementsss = enseignementsss;
-    }
-
-    public void addEnseignement(Enseignement enseignement) {
-        enseignementsss.add(enseignement);
-    }
-
-    public void delEnseignement(Enseignement enseignement) {
-        enseignementsss.remove(enseignement);
-    }
-
-    public boolean equals(Personneinterne personneinterne) {
-        return this.identifiant.equals(personneinterne.getIdentifiant());
-    }*/
 }

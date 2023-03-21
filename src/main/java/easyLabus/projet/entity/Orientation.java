@@ -12,7 +12,7 @@ public class Orientation {
     @Column(name = "nomorientation")
     private String nomorientation;
     @Basic
-    @Column(name = "intitulediplome",insertable = false,updatable = false)
+    @Column(name = "intitulediplome",updatable = false)
     private String intitulediplome;
 
     @ManyToOne
@@ -47,28 +47,15 @@ public class Orientation {
         return diplome;
     }
 
-    public void setDiplome(Diplome diplome) {
-        this.diplome = diplome;
-        this.intitulediplome = diplome.getIntitulediplome();
+    public void setIntitulediplome(String intitulediplome) {
+        this.intitulediplome = intitulediplome;
     }
 
     public List<Niveau> getNiveaus() {
         return niveaus;
     }
-/*
-    public void setNiveaus(ArrayList<Niveau> niveaus) {
-        this.niveaus = niveaus;
-    }
-
-    public void addNiveau(Niveau niveau) {
-        niveaus.add(niveau);
-    }
-
-    public void delNiveau(Niveau niveau) {
-        niveaus.remove(niveau);
-    }
-
+    
     public boolean equals(Orientation orientation) {
         return this.nomorientation.equals(orientation.getNomorientation());
-    } */
+    }
 }

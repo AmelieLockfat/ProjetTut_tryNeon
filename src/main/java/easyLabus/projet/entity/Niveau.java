@@ -11,7 +11,7 @@ public class Niveau {
     @Column(name = "intituleniveau")
     private String intituleniveau;
     @Basic
-    @Column(name = "nomorientation",insertable = false,updatable = false)
+    @Column(name = "nomorientation",updatable = false)
     private String nomorientation;
 
     @ManyToOne
@@ -19,13 +19,12 @@ public class Niveau {
     private Orientation orientation;
 
 
-    @OneToMany(mappedBy = "niveau")
+    @OneToMany(mappedBy = "niveau", cascade=CascadeType.REMOVE)
     private List<Semestre> semestres = new ArrayList<>();
 
-    public Niveau(String intituleniveau, Orientation orientation) {
+    public Niveau(String intituleniveau, String nomorientation) {
         this.intituleniveau = intituleniveau;
-        this.orientation = orientation;
-        this.nomorientation = orientation.getNomorientation();
+        this.nomorientation = nomorientation;
     }
 
     public Niveau() {
@@ -48,28 +47,15 @@ public class Niveau {
         return orientation;
     }
 
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
-        this.nomorientation = orientation.getNomorientation();
+    public void setNomorientation(String nomorientation) {
+        this.nomorientation = nomorientation;
     }
 
     public List<Semestre> getSemestres() {
         return semestres;
     }
-/*
-    public void setSemestres(ArrayList<Semestre> semestres) {
-        this.semestres = semestres;
-    }
-
-    public void addSemestre(Semestre semestre) {
-        semestres.add(semestre);
-    }
-
-    public void delSemestre(Semestre semestre) {
-        semestres.remove(semestre);
-    }
 
     public boolean equals(Niveau niveau) {
         return this.intituleniveau.equals(niveau.getIntituleniveau());
-    }*/
+    }
 }

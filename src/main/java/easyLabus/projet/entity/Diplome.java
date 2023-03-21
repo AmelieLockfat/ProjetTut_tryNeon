@@ -34,18 +34,6 @@ public class Diplome {
         return orientations;
     }
 
-    /*public void setOrientations(ArrayList<Orientation> orientations) {
-        this.orientations = orientations;
-    }
-
-    public void addOrientation(Orientation orientation) {
-        orientations.add(orientation);
-    }
-
-    public void delOrientation(Orientation orientation) {
-        orientations.remove(orientation);
-    }
-*/
     public boolean equals(Diplome diplome) {
         return this.intitulediplome.equals(diplome.getIntitulediplome());
     }

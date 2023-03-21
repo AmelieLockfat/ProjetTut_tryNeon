@@ -23,7 +23,7 @@ public class Semestre {
     @JoinColumn (name="intituleniveau", referencedColumnName ="intituleniveau",nullable=false )
    private Niveau niveau;
 
-    @OneToMany(mappedBy = "semestre")
+    @OneToMany(mappedBy = "semestre", cascade=CascadeType.REMOVE)
     private List<Ue> ues = new ArrayList<>();
 
     public Semestre(int numsemestre, String intituleniveau) {
@@ -55,19 +55,7 @@ public class Semestre {
         return ues;
     }
 
-   /* public void setUes(ArrayList<Ue> ues) {
-        this.ues = ues;
-    }
-
-    public void addUe(Ue ue) {
-        ues.add(ue);
-    }
-
-    public void delUe(Ue ue) {
-        ues.remove(ue);
-    }
-
     public boolean equals(Semestre semestre) {
         return this.idsemestre==semestre.getIdsemestre();
-    } */
+    }
 }
