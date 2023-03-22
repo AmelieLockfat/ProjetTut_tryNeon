@@ -14,16 +14,16 @@ public class Enseignement {
     private String nomens;
     @Basic
     @Column(name = "heurecm", nullable = false)
-    private Double heurecm;
+    private Double heurecm = 0.0;
     @Basic
     @Column(name = "heuretd", nullable = false)
-    private Double heuretd;
+    private Double heuretd = 0.0;
     @Basic
     @Column(name = "heuretp", nullable = false)
-    private Double heuretp;
+    private Double heuretp = 0.0;
     @Basic
     @Column(name = "heuretotalencadree", nullable = false)
-    private Double heuretotalencadree;
+    private Double heuretotalencadree = 0.0;
     
     @ManyToMany(mappedBy = "enseignements")
     private List<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
@@ -55,6 +55,12 @@ public class Enseignement {
     @Column(name = "contenu", nullable = true)
     private String contenu;
 
+    public Enseignement (String codeens, String nomens, String codeue){
+        this.codeens = codeens;
+        this.nomens = nomens;
+        this.codeue=codeue;
+    }
+    
     public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp){
         this.codeens = codeens;
         this.nomens = nomens;

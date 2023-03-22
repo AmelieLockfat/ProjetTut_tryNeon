@@ -112,25 +112,16 @@ public class UeService {
         SEM.addUe(UE);
         semestreDao.save(SEM);
         return UE;
-    }
+    }*/
 
-    @Transactional(readOnly = true)
+    /*@Transactional(readOnly = true)
     public FicheUE getFicheUE(String codeue){
         var UE = ueDao.findById(codeue).orElseThrow();
         return new FicheUE(UE);
-    }
-
-    public void delUe(String codeue) {
-        var ue = ueDao.findById(codeue).orElseThrow();
-        var L_ENS = ue.getEnseignements();
-        var L_L_PERS= new ArrayList<Personneinterne>();
-
-        for (Enseignement ens : L_ENS)
-        { for (Personneinterne PERS : ens.getPersonnesinternes())
-            {PERS.delEnseignement(ens);
-            }
-            enseignementDao.delete(ens); }
-        ueDao.delete(ue);
-
     }*/
+
+    @Transactional
+    public void delUe(String codeue) {
+        ueDao.deleteById(codeue);
+    }
 }
