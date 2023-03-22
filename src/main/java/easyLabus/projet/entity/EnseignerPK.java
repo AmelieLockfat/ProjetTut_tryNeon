@@ -41,11 +41,4 @@ public class EnseignerPK implements Serializable {
 
         return true;
     }
-
-    @Override
-    public int hashCode() {
-        int result = identifiant != null ? identifiant.hashCode() : 0;
-        result = 31 * result + (codeens != null ? codeens.hashCode() : 0);
-        return result;
-    }
 }

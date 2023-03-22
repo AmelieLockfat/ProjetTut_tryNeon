@@ -18,9 +18,10 @@ public class SemestreController {
         this.semestreservice = semestreservice;
     }
 
-    @GetMapping(path= "{intituleniveau}/getSemestre")
-    public List<Semestre> getSemestre(@PathVariable String intituleniveau)
-    {return semestreservice.getSemestrebyNiveau(intituleniveau);}
-
-
+    @GetMapping(path= "{intituleniveau}")
+    public List<Semestre> getSemestre(
+        @PathVariable String intituleniveau){
+        
+        return semestreservice.getSemestreByNiveau(intituleniveau);
+    }
 }

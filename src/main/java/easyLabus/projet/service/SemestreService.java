@@ -21,8 +21,7 @@ public class SemestreService {
     }
 
     @Transactional(readOnly = true)
-    public List<Semestre> getSemestrebyNiveau (String intituleniveau){
-        var NIV = niveauDao.findById(intituleniveau).orElseThrow();
-        return NIV.getSemestres();
+    public List<Semestre> getSemestreByNiveau (String intituleniveau){
+        return semestreDao.getByIntituleniveau(intituleniveau);
     }
 }
