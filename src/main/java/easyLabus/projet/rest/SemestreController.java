@@ -1,5 +1,6 @@
 package easyLabus.projet.rest;
 
+import easyLabus.projet.dto.SemestreSimple;
 import easyLabus.projet.entity.Semestre;
 import easyLabus.projet.service.SemestreService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class SemestreController {
     }
 
     @GetMapping(path= "{intituleniveau}")
-    public List<Semestre> getSemestre(
+    public List<SemestreSimple> getSemestre(
         @PathVariable String intituleniveau){
         
         return semestreservice.getSemestreByNiveau(intituleniveau);

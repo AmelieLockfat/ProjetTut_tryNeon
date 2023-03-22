@@ -1,6 +1,7 @@
 package easyLabus.projet.dao;
 
 
+import easyLabus.projet.dto.SemestreSimple;
 import easyLabus.projet.entity.Semestre;
 
 import java.util.List;
@@ -14,5 +15,5 @@ public interface SemestreRepository extends JpaRepository<Semestre, Long> {
          + "FROM Semestre "
          + "WHERE intituleniveau = :niveau "
          + "AND anneedetude = :annee ")
-    public List<Semestre> getByIntituleniveau(String niveau);
+    public List<SemestreSimple> getByIntituleniveau(String niveau);
 }

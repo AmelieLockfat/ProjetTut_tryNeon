@@ -2,6 +2,7 @@ package easyLabus.projet.service;
 
 import easyLabus.projet.dao.NiveauRepository;
 import easyLabus.projet.dao.SemestreRepository;
+import easyLabus.projet.dto.SemestreSimple;
 import easyLabus.projet.entity.Semestre;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ public class SemestreService {
     }
 
     @Transactional(readOnly = true)
-    public List<Semestre> getSemestreByNiveau (String intituleniveau){
+    public List<SemestreSimple> getSemestreByNiveau (String intituleniveau){
         return semestreDao.getByIntituleniveau(intituleniveau);
     }
 }
