@@ -1,5 +1,6 @@
 package easyLabus.projet.rest;
 
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.service.EnseignementService;
@@ -16,6 +17,13 @@ public class EnseignementController {
 	public EnseignementController(EnseignementService enseignementService) {
 		this.enseignementService = enseignementService;
 	}
+
+    @GetMapping("ByUe")
+    public List<EnseignementSimple> getByUe(
+        @RequestParam(required = true) String codeue){
+
+        return enseignementService.getByUe(codeue);
+    }
 /*
 	@PostMapping(path = "new")
     public Enseignement creerEns(

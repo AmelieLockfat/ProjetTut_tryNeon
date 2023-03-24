@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import easyLabus.projet.dao.EnseignementRepository;
 import easyLabus.projet.dao.UeRepository;
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dao.PersonneinterneRepository;
 import easyLabus.projet.dao.FicheENSRepository;
 import easyLabus.projet.entity.Enseignement;
@@ -21,6 +22,11 @@ public class EnseignementService {
         this.enseignementDao = enseignementDao;
         this.ueDao=ueDao;
         this.personneinterneDao=personneinterneDao;
+    }
+
+    @Transactional
+    public List<EnseignementSimple> getByUe (String codeue) {
+        return enseignementDao.getByUe(codeue);
     }
 /*
     @Transactional
