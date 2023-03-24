@@ -29,7 +29,7 @@ public class Enseignement {
     private List<Personneinterne> personnesinternes = new ArrayList<Personneinterne>();
 
     @Basic
-    @Column(name = "codeue", updatable = false, nullable = false)
+    @Column(name = "codeue", insertable = false,updatable = false, nullable = false)
     private String codeue;
 
     @ManyToOne

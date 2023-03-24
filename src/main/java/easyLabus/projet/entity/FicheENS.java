@@ -8,7 +8,7 @@ import java.util.*;
 public class FicheENS {
     @Id
     @GeneratedValue
-    @Column(name = "idficheENS")
+    @Column(name = "idficheENS",insertable=false, updatable=false)
     private Long idficheENS;
 
     @Basic

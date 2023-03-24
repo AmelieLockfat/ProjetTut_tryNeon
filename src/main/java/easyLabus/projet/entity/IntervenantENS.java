@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 public class IntervenantENS {
     @Id
     @GeneratedValue
-    @Column(name = "idintervenant")
+    @Column(name = "idintervenant",insertable=false, updatable=false)
     private Long idintervenant;
 
     @Basic
-    @Column(name = "idFicheENS",updatable = false)
+    @Column(name = "idFicheENS",insertable=false,updatable = false)
     private Long idFicheENS;
 
     @ManyToOne

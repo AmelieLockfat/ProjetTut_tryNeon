@@ -11,7 +11,7 @@ public class Niveau {
     @Column(name = "intituleniveau")
     private String intituleniveau;
     @Basic
-    @Column(name = "nomorientation",updatable = false)
+    @Column(name = "nomorientation",insertable = false, updatable = false)
     private String nomorientation;
 
     @ManyToOne

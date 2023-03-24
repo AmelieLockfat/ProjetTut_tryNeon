@@ -37,7 +37,7 @@ public class Ue {
     private Double volumstage;
 
     @Basic
-    @Column(name = "idsemestre")
+    @Column(name = "idsemestre",insertable = false,updatable = false)
     private Long idsemestre;
 
     @ManyToOne
@@ -88,7 +88,7 @@ public class Ue {
 
     public Ue(String codeue, String intituleue,  Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage) {
         this(codeue, intituleue, idsemestre, creditsects, volumtravailperso, volumprojet);
-        //this.volumstage = volumstage;
+        this.volumstage = volumstage;
     }
 
     public Ue(String codeue, String intituleue, Long idsemestre, Integer creditsects, Double volumtravailperso, Double volumprojet, Double volumstage, String modalitescontrole) {

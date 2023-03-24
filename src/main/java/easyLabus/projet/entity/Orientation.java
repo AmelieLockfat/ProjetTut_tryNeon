@@ -12,7 +12,7 @@ public class Orientation {
     @Column(name = "nomorientation")
     private String nomorientation;
     @Basic
-    @Column(name = "intitulediplome",updatable = false)
+    @Column(name = "intitulediplome",insertable = false,updatable = false)
     private String intitulediplome;
 
     @ManyToOne

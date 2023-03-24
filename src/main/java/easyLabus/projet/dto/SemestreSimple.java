@@ -1,6 +1,6 @@
 package easyLabus.projet.dto;
 
 public interface SemestreSimple {
-    Long getIdSemestre();
-    int getNumSemestre();
+    Long getIdsemestre();
+    int getNumsemestre();
 }

@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 public class Contenu {
     @Id
     @GeneratedValue
-    @Column(name = "idcontenu")
+    @Column(name = "idcontenu",insertable=false, updatable=false)
     private Long idcontenu;
 
     @Basic
-    @Column(name = "idFicheUE",updatable = false)
+    @Column(name = "idFicheUE",insertable=false, updatable = false)
     private Long idFicheUE;
 
     @ManyToOne
@@ -18,10 +18,10 @@ public class Contenu {
     private FicheUE ficheUE;
 
     @Basic
-    @Column(name = "nomens", nullable = false)
+    @Column(name = "nomens",insertable = false, nullable = false)
     private String nomens;
     @Basic
-    @Column(name = "contenu", nullable = false)
+    @Column(name = "contenu", insertable = false,nullable = false)
     private String contenu;
 
     public Contenu(Long idFicheUE, Enseignement enseignement) {

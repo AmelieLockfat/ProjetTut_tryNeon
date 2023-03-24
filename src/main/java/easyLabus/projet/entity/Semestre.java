@@ -9,7 +9,7 @@ import java.util.List;
 public class Semestre {
     @Id
     @GeneratedValue
-    @Column(name = "idsemestre")
+    @Column(name = "idsemestre",insertable=false, updatable=false)
     private Long idsemestre;
     @Basic
     @Column(name = "numsemestre", nullable = false)
