@@ -3,6 +3,7 @@ package easyLabus.projet.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import easyLabus.projet.dto.UeSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
 import org.springframework.stereotype.Service;
@@ -28,13 +29,13 @@ public class UeService {
         this.ficheUEDao=ficheUEDao;
         this.semestreDao=semestreDao;
     }
-/*
-    @Transactional(readOnly = true)
-    public ArrayList<Ue> getUeBySemestre (Long idsemestre){
-        var SEM = semestreDao.findById(idsemestre).orElseThrow();
-        return SEM.getUes();
-    }
 
+    @Transactional(readOnly = true)
+    public List<UeSimple> getUeBySemestre (Long idsemestre){
+        var SEM = semestreDao.findById(idsemestre).orElseThrow();
+        return semestreDao.getUeSimples(SEM.getIdsemestre());
+    }
+/*
     @Transactional
     public Ue delEnseignement(String codeue,String codeens) {
         var ENS = enseignementDao.findById(codeens).orElseThrow();

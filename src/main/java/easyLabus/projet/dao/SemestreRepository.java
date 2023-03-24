@@ -2,6 +2,7 @@ package easyLabus.projet.dao;
 
 
 import easyLabus.projet.dto.SemestreSimple;
+import easyLabus.projet.dto.UeSimple;
 import easyLabus.projet.entity.Semestre;
 
 import java.util.List;
@@ -15,4 +16,11 @@ public interface SemestreRepository extends JpaRepository<Semestre, Long> {
          + "FROM Semestre sem "
          + "WHERE sem.niveau.intituleniveau = :niveau ")
     public List<SemestreSimple> getByIntituleniveau(String niveau);
+
+    @Query(nativeQuery=true ,
+            value = " SELECT ues.codeue as codeue, ues.intituleue "
+            + "FROM Ue ues "
+            + "WHERE ues.idsemestre " +
+                    "= :idsemestre ")
+    public List<UeSimple> getUeSimples(Long idsemestre) ;
 }
