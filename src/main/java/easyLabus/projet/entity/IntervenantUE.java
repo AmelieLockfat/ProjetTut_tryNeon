@@ -29,4 +29,8 @@ public class IntervenantUE {
         this.prenompers = pers.getPrenompers();
         this.nompers = pers.getNompers();
     }
+
+    public IntervenantUE() {
+
+    }
 }
