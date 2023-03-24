@@ -1,8 +1,6 @@
 package easyLabus.projet.dto;
 
-public interface FicheENSSimple {
-    Long getIdficheENS();
-
+public interface FausseFicheENSSimple {
     String getCodeens();
     String getNomens();
     Double getHeurecm();
@@ -19,6 +17,4 @@ public interface FicheENSSimple {
     String getIntituleue();
 
     int getNumsemestre();
-
-    String getAnneedetude();
 }

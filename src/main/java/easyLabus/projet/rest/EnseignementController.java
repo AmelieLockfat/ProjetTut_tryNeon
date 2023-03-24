@@ -1,6 +1,7 @@
 package easyLabus.projet.rest;
 
 import easyLabus.projet.dto.EnseignementSimple;
+import easyLabus.projet.dto.FausseFicheENSSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.service.EnseignementService;
@@ -23,6 +24,13 @@ public class EnseignementController {
         @RequestParam(required = true) String codeue){
 
         return enseignementService.getByUe(codeue);
+    }
+
+    @GetMapping("Fiche")
+    public FausseFicheENSSimple getFicheENS(
+        @RequestParam(required = true) String codeens) {
+
+        return enseignementService.getFiche(codeens);
     }
 /*
 	@PostMapping(path = "new")
