@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import easyLabus.projet.dto.FausseFicheUESimple;
+import easyLabus.projet.dto.IntervenantUESimple;
 import easyLabus.projet.dto.UeSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
@@ -40,6 +41,11 @@ public class UeService {
     @Transactional(readOnly = true)
     public FausseFicheUESimple getFiche (String codeue) {
         return ueDao.getFicheActu(codeue);
+    }
+
+    @Transactional(readOnly = true)
+    public List<IntervenantUESimple> getIntervenants (String codeue) {
+        return ueDao.getIntervenants(codeue);
     }
 
 /*

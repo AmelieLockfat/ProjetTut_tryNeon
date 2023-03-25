@@ -5,6 +5,7 @@ import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
 import easyLabus.projet.dto.FausseFicheUESimple;
+import easyLabus.projet.dto.IntervenantUESimple;
 //import easyLabus.projet.service.UeService;
 import easyLabus.projet.dto.UeSimple;
 
@@ -92,6 +93,13 @@ public class UeController {
         @RequestParam(required = true) String codeue) {
 
         return ueService.getFiche(codeue);
+    }
+
+    @GetMapping("Intervenants")
+    public List<IntervenantUESimple> getIntervenants(
+        @RequestParam(required = true) String codeue) {
+
+        return ueService.getIntervenants(codeue);
     }
 
   /*  @PutMapping(path = "{codeue}/delUe")
