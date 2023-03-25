@@ -9,6 +9,7 @@ import easyLabus.projet.dao.EnseignementRepository;
 import easyLabus.projet.dao.UeRepository;
 import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.FausseFicheENSSimple;
+import easyLabus.projet.dto.IntervenantENSSimple;
 import easyLabus.projet.dao.PersonneinterneRepository;
 import easyLabus.projet.dao.FicheENSRepository;
 import easyLabus.projet.entity.Enseignement;
@@ -30,9 +31,14 @@ public class EnseignementService {
         return enseignementDao.getByUe(codeue);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public FausseFicheENSSimple getFiche (String codeens) {
         return enseignementDao.getFicheActu(codeens);
+    }
+
+    @Transactional(readOnly = true)
+    public List<IntervenantENSSimple> getIntervenants (String codeens) {
+        return enseignementDao.getIntervenants(codeens);
     }
 /*
     @Transactional

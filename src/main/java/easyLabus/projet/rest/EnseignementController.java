@@ -2,6 +2,7 @@ package easyLabus.projet.rest;
 
 import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.FausseFicheENSSimple;
+import easyLabus.projet.dto.IntervenantENSSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.service.EnseignementService;
@@ -32,6 +33,14 @@ public class EnseignementController {
 
         return enseignementService.getFiche(codeens);
     }
+
+    @GetMapping("Intervenants")
+    public List<IntervenantENSSimple> getIntervenants(
+        @RequestParam(required = true) String codeens) {
+
+        return enseignementService.getIntervenants(codeens);
+    }
+
 /*
 	@PostMapping(path = "new")
     public Enseignement creerEns(

@@ -1,5 +1,7 @@
 package easyLabus.projet.dto;
 
+import java.util.List;
+
 public interface FausseFicheENSSimple {
     String getCodeens();
     String getNomens();
@@ -17,4 +19,6 @@ public interface FausseFicheENSSimple {
     String getIntituleue();
 
     int getNumsemestre();
+
+    //List<IntervenantENSSimple> getIntervenants();
 }
