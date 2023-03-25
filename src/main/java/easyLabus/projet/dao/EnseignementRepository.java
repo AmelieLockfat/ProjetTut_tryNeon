@@ -25,8 +25,9 @@ public interface EnseignementRepository extends JpaRepository<Enseignement, Stri
 
     // NE MARCHE PEUT ETRE PAS //
     @Query(nativeQuery = true, value =
-           "SELECT er.identifiant as identiant, er.personneinterne.prenompers as prenompers, er.personneinterne.nompers as nompers, er.personneinterne.numtel as numtel, er.personneinterne.email as email, er.personneinterne.coordprivee as coordprivee "
-          +"FROM enseigner er "
-          +"WHERE er.enseignement.codeens = :code ")
+           "SELECT pers.prenompers as prenompers, pers.nompers as nompers "
+          +"FROM enseigner er INNER JOIN Personneinterne pers ON er.identifiant = pers.identifiant "+
+                   "INNER JOIN Enseignement ens ON er.codeens=ens.codeens "
+          +"WHERE ens.codeens = :code ")
     public List<IntervenantENSSimple> getIntervenants(String code);
 }
