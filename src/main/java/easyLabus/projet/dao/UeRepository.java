@@ -31,7 +31,7 @@ public interface UeRepository extends JpaRepository<Ue, String> {
           +"WHERE ens.codeue = :code ")
     public List<ContenuSimple> getContenus(String code);
 
-    // NE MARCHE PEUT ETRE PAS //
+    // MARCHE TRES BIEN :) //
     @Query(nativeQuery = true, value =
           "SELECT pers.prenompers as prenompers, pers.nompers as nompers "
          +"FROM Personneinterne pers INNER JOIN Enseigner er on pers.identifiant=er.identifiant "
