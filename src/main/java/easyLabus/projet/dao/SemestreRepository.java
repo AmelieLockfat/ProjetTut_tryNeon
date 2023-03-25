@@ -17,10 +17,5 @@ public interface SemestreRepository extends JpaRepository<Semestre, Long> {
          + "WHERE sem.niveau.intituleniveau = :niveau ")
     public List<SemestreSimple> getByIntituleniveau(String niveau);
 
-    @Query(nativeQuery=true ,
-            value = " SELECT ues.codeue as codeue, ues.intituleue "
-            + "FROM Ue ues "
-            + "WHERE ues.idsemestre " +
-                    "= :idsemestre ")
-    public List<UeSimple> getUeSimples(Long idsemestre) ;
+
 }

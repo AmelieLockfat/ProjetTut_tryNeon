@@ -83,8 +83,7 @@ public class UeController {
 */
     @GetMapping(path ="getUeBySemestre")
     public List<UeSimple>  getUeBySemestre(
-            @RequestParam(required = true) Long idsemestre
-    )
+            @RequestParam(required = true) Long idsemestre)
     {return ueService.getUeBySemestre(idsemestre);}
 
   /*  @PutMapping(path = "{codeue}/delUe")

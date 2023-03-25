@@ -33,7 +33,7 @@ public class UeService {
     @Transactional(readOnly = true)
     public List<UeSimple> getUeBySemestre (Long idsemestre){
         var SEM = semestreDao.findById(idsemestre).orElseThrow();
-        return semestreDao.getUeSimples(SEM.getIdsemestre());
+        return ueDao.getUeSimples(SEM.getIdsemestre());
     }
 /*
     @Transactional
