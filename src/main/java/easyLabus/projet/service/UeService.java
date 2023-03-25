@@ -3,6 +3,7 @@ package easyLabus.projet.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import easyLabus.projet.dto.FausseFicheUESimple;
 import easyLabus.projet.dto.UeSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
@@ -35,6 +36,12 @@ public class UeService {
         var SEM = semestreDao.findById(idsemestre).orElseThrow();
         return ueDao.getUeSimples(SEM.getIdsemestre());
     }
+
+    @Transactional(readOnly = true)
+    public FausseFicheUESimple getFiche (String codeue) {
+        return ueDao.getFicheActu(codeue);
+    }
+
 /*
     @Transactional
     public Ue delEnseignement(String codeue,String codeens) {
@@ -113,12 +120,6 @@ public class UeService {
         SEM.addUe(UE);
         semestreDao.save(SEM);
         return UE;
-    }*/
-
-    /*@Transactional(readOnly = true)
-    public FicheUE getFicheUE(String codeue){
-        var UE = ueDao.findById(codeue).orElseThrow();
-        return new FicheUE(UE);
     }*/
 
     @Transactional

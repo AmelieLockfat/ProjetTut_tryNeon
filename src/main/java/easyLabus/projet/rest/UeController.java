@@ -4,6 +4,7 @@ import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
+import easyLabus.projet.dto.FausseFicheUESimple;
 //import easyLabus.projet.service.UeService;
 import easyLabus.projet.dto.UeSimple;
 
@@ -81,10 +82,17 @@ public class UeController {
         return ueService.delEnseignement(codeue,codeens);
     }
 */
-    @GetMapping(path ="getUeBySemestre")
+    @GetMapping(path ="BySemestre")
     public List<UeSimple>  getUeBySemestre(
             @RequestParam(required = true) Long idsemestre)
     {return ueService.getUeBySemestre(idsemestre);}
+
+    @GetMapping(path = "Fiche")
+    public FausseFicheUESimple getFicheUE(
+        @RequestParam(required = true) String codeue) {
+
+        return ueService.getFiche(codeue);
+    }
 
   /*  @PutMapping(path = "{codeue}/delUe")
     public void delUe(

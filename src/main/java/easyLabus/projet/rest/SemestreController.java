@@ -16,7 +16,7 @@ public class SemestreController {
         this.semestreservice = semestreservice;
     }
 
-    @GetMapping(path= "getSemestre")
+    @GetMapping(path= "ByNiveau")
     public List<SemestreSimple> getSemestre(
         @RequestParam(required = true) String intituleniveau){
         

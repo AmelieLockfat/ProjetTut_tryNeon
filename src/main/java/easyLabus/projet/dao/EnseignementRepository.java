@@ -20,12 +20,13 @@ public interface EnseignementRepository extends JpaRepository<Enseignement, Stri
     @Query(nativeQuery = true,value = 
            "SELECT ens.codeens as codeens, ens.nomens as nomens, ens.heurecm as heurecm, ens.heuretd as heuretd, ens.heuretp as heuretp, ens.heuretotalencadree as heuretotalencadree, ens.heuretravailperso as heuretravailperso, ens.coefficient as coefficient, ens.modalitesevaluation as modalitesevaluation, ens.prerequis as prerequis, ens.planducours as planducours, ens.ue.codeue as codeue, ens.ue.intituleue as intituleue, ens.ue.semestre.numsemestre as numsemestre "
           +"FROM Enseignement ens "
-          +"WHERE ens.codeens = :ens ")
-    public FausseFicheENSSimple getFicheActu(String ens);
+          +"WHERE ens.codeens = :code ")
+    public FausseFicheENSSimple getFicheActu(String code);
 
+    // NE MARCHE PEUT ETRE PAS //
     @Query(nativeQuery = true, value =
            "SELECT er.identifiant as identiant, er.personneinterne.prenompers as prenompers, er.personneinterne.nompers as nompers, er.personneinterne.numtel as numtel, er.personneinterne.email as email, er.personneinterne.coordprivee as coordprivee "
           +"FROM enseigner er "
-          +"WHERE er.codeens = :ens ")
-    public List<IntervenantENSSimple> getIntervenants(String ens);
+          +"WHERE er.codeens = :code ")
+    public List<IntervenantENSSimple> getIntervenants(String code);
 }
