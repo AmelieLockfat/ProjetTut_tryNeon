@@ -28,7 +28,7 @@ public interface UeRepository extends JpaRepository<Ue, String> {
     @Query(nativeQuery = true, value = 
            "SELECT ens.nomens as nomens, ens.contenu as contenu "
           +"FROM Enseignement ens "
-          +"WHERE ens.ue.codeue = :code ")
+          +"WHERE ens.codeue = :code ")
     public List<ContenuSimple> getContenus(String code);
 
     // NE MARCHE PEUT ETRE PAS //

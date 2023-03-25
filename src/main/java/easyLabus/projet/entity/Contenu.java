@@ -27,6 +27,10 @@ public class Contenu {
     public Contenu(Long idFicheUE, Enseignement enseignement) {
         this.idFicheUE = idFicheUE;
         this.nomens = enseignement.getNomens();
-        this.contenu = enseignement.getContenu();
+
+    }
+
+    public Contenu() {
+
     }
 }

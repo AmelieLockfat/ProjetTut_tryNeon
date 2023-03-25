@@ -9,4 +9,3 @@ RUN mvn package
 #on lance le programme construit au démarrage du conteneur
 CMD java -jar target/*.jar
 #On documente l'utilisation du port 8080
-EXPOSE 8080
