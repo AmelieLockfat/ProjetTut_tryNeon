@@ -1,5 +1,6 @@
 package easyLabus.projet.dao;
 
+import easyLabus.projet.dto.ContenuSimple;
 import easyLabus.projet.dto.FausseFicheUESimple;
 import easyLabus.projet.dto.IntervenantUESimple;
 import easyLabus.projet.dto.UeSimple;
@@ -24,9 +25,15 @@ public interface UeRepository extends JpaRepository<Ue, String> {
           +"WHERE u.codeue = :code ")
     public FausseFicheUESimple getFicheActu(String code);
 
+    @Query(nativeQuery = true, value = 
+           "SELECT ens.nomens as nomens, ens.contenu as contenu "
+          +"FROM Enseignement ens "
+          +"WHERE ens.ue.codeue = :code ")
+    public List<ContenuSimple> getContenus(String code);
+
     // NE MARCHE PEUT ETRE PAS //
     @Query(nativeQuery = true, value =
-          "SELECT er.personneinterne.prenompers as prenompers, er.personneinterne.nompers as nompers"
+          "SELECT er.personneinterne.prenompers as prenompers, er.personneinterne.nompers as nompers "
          +"FROM enseigner er "
          +"WHERE er.enseignement.ue.codeue = :code ")
     public List<IntervenantUESimple> getIntervenants(String code);

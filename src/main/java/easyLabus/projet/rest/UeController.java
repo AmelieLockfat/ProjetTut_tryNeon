@@ -4,6 +4,7 @@ import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
+import easyLabus.projet.dto.ContenuSimple;
 import easyLabus.projet.dto.FausseFicheUESimple;
 import easyLabus.projet.dto.IntervenantUESimple;
 //import easyLabus.projet.service.UeService;
@@ -100,6 +101,13 @@ public class UeController {
         @RequestParam(required = true) String codeue) {
 
         return ueService.getIntervenants(codeue);
+    }
+
+    @GetMapping("Contenus")
+    public List<ContenuSimple> getContenus(
+        @RequestParam(required = true) String codeue) {
+
+        return ueService.getContenus(codeue);
     }
 
   /*  @PutMapping(path = "{codeue}/delUe")
