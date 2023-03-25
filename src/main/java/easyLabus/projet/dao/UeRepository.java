@@ -33,8 +33,10 @@ public interface UeRepository extends JpaRepository<Ue, String> {
 
     // NE MARCHE PEUT ETRE PAS //
     @Query(nativeQuery = true, value =
-          "SELECT er.personneinterne.prenompers as prenompers, er.personneinterne.nompers as nompers "
-         +"FROM enseigner er "
-         +"WHERE er.enseignement.ue.codeue = :code ")
+          "SELECT pers.prenompers as prenompers, pers.nompers as nompers "
+         +"FROM Personneinterne pers INNER JOIN Enseigner er on pers.identifiant=er.identifiant "
+                  +"INNER JOIN Enseignement ens ON er.codeens=ens.codeens "
+                  +"INNER JOIN Ue u ON ens.codeue = u.codeue "
+         +"WHERE u.codeue = :code ")
     public List<IntervenantUESimple> getIntervenants(String code);
 }
