@@ -10,7 +10,6 @@ public interface FausseFicheUESimple {
     int getNumsemestre();
     Integer getOrdreue();
     String getMotcles();
-    String getCompetence();
     String getCompetenses();
     Double getHeurecm();
     Double getHeuretd();

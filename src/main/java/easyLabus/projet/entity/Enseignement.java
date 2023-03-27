@@ -51,9 +51,10 @@ public class Enseignement {
     @Basic
     @Column(name = "planducours", nullable = true)
     private String planducours;
-    @OneToOne
-    @PrimaryKeyJoinColumn( name = "contenu",referencedColumnName = "nomens")
-    private Contenu contenu;
+
+    @Basic
+    @Column(name="contenu",nullable = true)
+    private String contenu;
 
     public Enseignement (String codeens, String nomens, String codeue){
         this.codeens = codeens;
@@ -71,32 +72,32 @@ public class Enseignement {
         this.codeue=codeue;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp);
         this.contenu = contenu;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu, Double heuretravailperso){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu);
         this.heuretravailperso = heuretravailperso;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu, Double heuretravailperso, Double coefficient){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso);
         this.coefficient = coefficient;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient);
         this.modalitesevaluation = modalitesevaluation;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation);
         this.prerequis = prerequis;
     }
 
-    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, Contenu contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours){
+    public Enseignement (String codeens, String nomens, String codeue, Double heurecm, Double heuretd, Double heuretp, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours){
         this(codeens, nomens, codeue, heurecm, heuretd, heuretp, contenu, heuretravailperso, coefficient, modalitesevaluation, prerequis);
         this.planducours = planducours;
     }
@@ -200,11 +201,11 @@ public class Enseignement {
         this.planducours = planducours;
     }
 
-    public Contenu getContenu() {
+    public String getContenu() {
         return contenu;
     }
 
-    public void setContenu(Contenu contenu) {
+    public void setContenu(String contenu) {
         this.contenu = contenu;
     }
 

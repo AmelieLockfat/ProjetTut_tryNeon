@@ -3,7 +3,7 @@ package easyLabus.projet.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Contenu {
+public class ContenuUE {
     @Id
     @GeneratedValue
     @Column(name = "idcontenu",insertable=false, updatable=false)
@@ -24,13 +24,13 @@ public class Contenu {
     @Column(name = "contenu", insertable = false,nullable = false)
     private String contenu;
 
-    public Contenu(Long idFicheUE, Enseignement enseignement) {
+    public ContenuUE(Long idFicheUE, Enseignement enseignement) {
         this.idFicheUE = idFicheUE;
         this.nomens = enseignement.getNomens();
 
     }
 
-    public Contenu() {
+    public ContenuUE() {
 
     }
 }

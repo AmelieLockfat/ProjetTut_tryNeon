@@ -44,7 +44,7 @@ public class FicheUE {
     private Integer numsemestre;
 
     @OneToMany(mappedBy = "ficheUE", cascade=CascadeType.REMOVE)
-    private List<Contenu> contenus = new ArrayList<Contenu>();
+    private List<ContenuUE> contenuUES = new ArrayList<ContenuUE>();
 
     @Basic
     @Column(name = "heurecm", insertable = false, nullable = false)
@@ -118,8 +118,8 @@ public class FicheUE {
         return idFicheUE;
     }
 
-    public List<Contenu> getContenus (){
-        return contenus;
+    public List<ContenuUE> getContenus (){
+        return contenuUES;
     }
 
     public List<IntervenantUE> getIntervenants (){
