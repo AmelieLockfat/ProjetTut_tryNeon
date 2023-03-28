@@ -25,14 +25,14 @@ public interface UeRepository extends JpaRepository<Ue, String> {
     public FausseFicheUESimple getFicheActu(String code);
 
     @Query(nativeQuery = true, value = 
-           "SELECT ens.nomens as nomens, ens.contenu as contenu "
+           "SELECT ens.codeens as codeens, ens.nomens as nomens, ens.contenu as contenu "
           +"FROM Enseignement ens "
           +"WHERE ens.codeue = :code ")
     public List<ContenuSimple> getContenus(String code);
 
     // MARCHE TRES BIEN :) //
     @Query(nativeQuery = true, value =
-          "SELECT pers.prenompers as prenompers, pers.nompers as nompers "
+          "SELECT pers.identifiant as identifiant, pers.prenompers as prenompers, pers.nompers as nompers "
          +"FROM Personneinterne pers INNER JOIN Enseigner er on pers.identifiant=er.identifiant "
                   +"INNER JOIN Enseignement ens ON er.codeens=ens.codeens "
                   +"INNER JOIN Ue u ON ens.codeue = u.codeue "
