@@ -13,8 +13,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface EnseignementRepository extends JpaRepository<Enseignement, String> {
     @Query( "SELECT ens.codeens as codeens, ens.nomens as nomens, ens.heurecm as heurecm, ens.heuretd as heuretd, ens.heuretp as heuretp, ens.heuretotalencadree as heuretotalencadree, ens.heuretravailperso as heuretravailperso, ens.coefficient as coefficient, ens.modalitesevaluation as modalitesevaluation, ens.prerequis as prerequis, ens.planducours as planducours, ens.contenu as contenu "
           +"FROM Enseignement ens "
-          +"WHERE ens.ue.codeue = :ue ")
-    public List<EnseignementSimple> getByUe(String ue);
+          +"WHERE ens.ue.codeue = :codue ")
+    public List<EnseignementSimple> getByUe(String codue);
 
     @Query(
            "SELECT ens.codeens as codeens, ens.nomens as nomens, ens.heurecm as heurecm, ens.heuretd as heuretd, ens.heuretp as heuretp, ens.heuretotalencadree as heuretotalencadree, ens.heuretravailperso as heuretravailperso, ens.coefficient as coefficient, ens.modalitesevaluation as modalitesevaluation, ens.prerequis as prerequis, ens.planducours as planducours, ens.ue.codeue as codeue, ens.ue.intituleue as intituleue, ens.ue.semestre.numsemestre as numsemestre "
