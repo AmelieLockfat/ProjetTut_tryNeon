@@ -55,10 +55,6 @@ public class UeService {
         return ueDao.getContenus(codeue);
     }
 
-    @Transactional(readOnly = true)
-    public UeSimple getBycodeue (String codeue) {
-        return ueDao.getBycode(codeue);
-    }
 
     @Transactional
     public EnseignementSimple addNewEnseignement (String codeue, String codeens, String nomens, String contenu) {

@@ -104,12 +104,6 @@ public class UeController {
         return ueService.getIntervenants(codeue);
     }
 
-    @GetMapping("ByCodeue")
-    public UeSimple getBycode(
-            @RequestParam(required = true) String codeue) {
-
-        return ueService.getBycodeue(codeue);
-    }
 
     @GetMapping("Contenus")
     public List<ContenuSimple> getContenus(
@@ -125,6 +119,8 @@ public class UeController {
 
         return ueService.addNewEnseignement(codeue,newEnseignementJSON.get("codeens"),newEnseignementJSON.get("nomens"),newEnseignementJSON.get("contenu"));
     }
+
+
 
   /*  @PutMapping(path = "{codeue}/delUe")
     public void delUe(
