@@ -3,6 +3,7 @@ package easyLabus.projet.service;
 import java.util.List;
 
 import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.PersonneinterneSimple;
 import easyLabus.projet.entity.Enseignement;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,13 @@ public class PersonneinterneService {
         this.enseignementDao = enseignementDao;
         this.niveauDao=niveauDao;
         this.personneinterneDao=personneinterneDao;
+    }
+
+    @Transactional
+    public PersonneinterneSimple addPERS(String identifiant, String motdepasse, String prenompers, String nompers,String numtel, String email) {
+        Personneinterne PERS = new Personneinterne(identifiant,motdepasse,prenompers,nompers,null,email,numtel,true,false);
+        personneinterneDao.save(PERS);
+        return personneinterneDao.getPersonneinterneByIdentifiantmdp(identifiant,motdepasse);
     }
 
     @Transactional(readOnly = true)

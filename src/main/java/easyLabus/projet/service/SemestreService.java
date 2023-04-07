@@ -32,7 +32,7 @@ public class SemestreService {
 
     @Transactional
     public UeSimple addNewUe (String codeue, String intitule, Long idSemestre) {
-        var semestre = semestreDao.findById(idSemestre).orElseThrow();
+    var semestre = semestreDao.findById(idSemestre).orElseThrow();
         Ue nUE = new Ue(codeue,intitule,idSemestre,0,0.0,0.0,0.0,null,null,null,null,null,null);
         ueDao.save(nUE);
         semestreDao.save(semestre);

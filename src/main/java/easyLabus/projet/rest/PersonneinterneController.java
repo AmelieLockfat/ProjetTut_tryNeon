@@ -1,12 +1,14 @@
 package easyLabus.projet.rest;
 
 import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.PersonneinterneSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
 import easyLabus.projet.service.PersonneinterneService;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,12 @@ public class PersonneinterneController {
 		return personneinterneService.getPersonneinterneByIdentifiant(identifiant, motdepasse);
 	}
 
+    @PostMapping("AddPersonneinterne")
+    public PersonneinterneSimple addPERS(
+            @RequestBody Map<String, String> newPersonneinterneJSON,
+            @RequestParam(required = true) String identifiant) {
+        return personneinterneService.addPERS(identifiant,newPersonneinterneJSON.get("motdepasse"),newPersonneinterneJSON.get("prenompers"),newPersonneinterneJSON.get("nompers"),newPersonneinterneJSON.get("email"),newPersonneinterneJSON.get("numtel"));
+    }
   /* @GetMapping(path = "{identifiant}")
     public Personneinterne getPers(
         @PathVariable String identifiant) {
