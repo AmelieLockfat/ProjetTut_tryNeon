@@ -32,7 +32,7 @@ public interface UeRepository extends JpaRepository<Ue, String> {
 
     // MARCHE TRES BIEN :) //
     @Query(nativeQuery = true, value =
-          "SELECT pers.identifiant as identifiant, pers.prenompers as prenompers, pers.nompers as nompers "
+          "SELECT DISTINCT pers.identifiant as identifiant, pers.prenompers as prenompers, pers.nompers as nompers "
          +"FROM Personneinterne pers INNER JOIN Enseigner er on pers.identifiant=er.identifiant "
                   +"INNER JOIN Enseignement ens ON er.codeens=ens.codeens "
                   +"INNER JOIN Ue u ON ens.codeue = u.codeue "
