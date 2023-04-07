@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/easyLabus/personneinternes")
+@RequestMapping(path = "/api/personneinternes")
 public class PersonneinterneController {
     private final PersonneinterneService personneinterneService;
 	// @Autowired
