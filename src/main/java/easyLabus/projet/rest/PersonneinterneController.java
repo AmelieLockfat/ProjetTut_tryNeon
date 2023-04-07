@@ -20,7 +20,7 @@ public class PersonneinterneController {
 	}
 
 	@GetMapping("ByIDetMdp")
-	public PersonneinterneSimple getPersonneinterneByIdentifiant(
+	public PersonneinterneSimple getPersonneinterneByIdentifiantm(
 			@RequestParam(required = true) String identifiant,
 			@RequestParam(required = true) String motdepasse
 	) {
