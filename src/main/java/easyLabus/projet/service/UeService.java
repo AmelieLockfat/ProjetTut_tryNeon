@@ -28,38 +28,38 @@ public class UeService {
     private final SemestreRepository semestreDao;
 
     public UeService(UeRepository ueDao, EnseignementRepository enseignementDao, FicheUERepository ficheUEDao, SemestreRepository semestreDao) {
-        this.ueDao=ueDao;
+        this.ueDao = ueDao;
         this.enseignementDao = enseignementDao;
-        this.ficheUEDao=ficheUEDao;
-        this.semestreDao=semestreDao;
+        this.ficheUEDao = ficheUEDao;
+        this.semestreDao = semestreDao;
     }
 
     @Transactional(readOnly = true)
-    public List<UeSimple> getUeBySemestre (Long idsemestre){
+    public List<UeSimple> getUeBySemestre(Long idsemestre) {
         var SEM = semestreDao.findById(idsemestre).orElseThrow();
         return ueDao.getUeSimples(SEM.getIdsemestre());
     }
 
     @Transactional(readOnly = true)
-    public FausseFicheUESimple getFiche (String codeue) {
+    public FausseFicheUESimple getFiche(String codeue) {
         return ueDao.getFicheActu(codeue);
     }
 
     @Transactional(readOnly = true)
-    public List<IntervenantUESimple> getIntervenants (String codeue) {
+    public List<IntervenantUESimple> getIntervenants(String codeue) {
         return ueDao.getIntervenants(codeue);
     }
 
     @Transactional(readOnly = true)
-    public List<ContenuSimple> getContenus (String codeue) {
+    public List<ContenuSimple> getContenus(String codeue) {
         return ueDao.getContenus(codeue);
     }
 
 
     @Transactional
-    public EnseignementSimple addNewEnseignement (String codeue, String codeens, String nomens, String contenu) {
+    public EnseignementSimple addNewEnseignement(String codeue, String codeens, String nomens, String contenu) {
         var UE = ueDao.findById(codeue).orElseThrow();
-        Enseignement ENS = new Enseignement(codeens,nomens,codeue,0.0,0.0,0.0,contenu);
+        Enseignement ENS = new Enseignement(codeens, nomens, codeue, 0.0, 0.0, 0.0, contenu);
         enseignementDao.save(ENS);
         ueDao.save(UE);
         return enseignementDao.getSimpleByCodeens(codeens);
@@ -148,4 +148,12 @@ public class UeService {
     public void delUe(String codeue) {
         ueDao.deleteById(codeue);
     }
+
+
+    @Transactional(readOnly = true)
+    public boolean existUE(String codeue) {
+        Ue UE = ueDao.getById(codeue);
+        return (UE != null);
+    }
+
 }

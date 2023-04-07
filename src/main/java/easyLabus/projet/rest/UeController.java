@@ -126,6 +126,12 @@ public class UeController {
         ueService.delEnseignement(codeens);
     }
 
+    @GetMapping("existUE")
+    public boolean existENS(
+            @RequestParam(required = true) String codeue) {
+        return ueService.existUE(codeue);
+    }
+
   /*  @PutMapping(path = "{codeue}/delUe")
     public void delUe(
             @PathVariable String codeue) {
