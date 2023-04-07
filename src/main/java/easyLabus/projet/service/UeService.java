@@ -55,6 +55,11 @@ public class UeService {
         return ueDao.getContenus(codeue);
     }
 
+    @Transactional(readOnly = true)
+    public List<UeSimple> getBycodeue (String codeue) {
+        return ueDao.getBycode(codeue);
+    }
+
     @Transactional
     public EnseignementSimple addNewEnseignement (String codeue, String codeens, String nomens, String contenu) {
         var UE = ueDao.findById(codeue).orElseThrow();
