@@ -1,5 +1,7 @@
 package easyLabus.projet.rest;
 
+import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.PersonneinterneSimple;
 import easyLabus.projet.entity.Enseignement;
 import easyLabus.projet.entity.Personneinterne;
 import easyLabus.projet.service.PersonneinterneService;
@@ -15,6 +17,15 @@ public class PersonneinterneController {
 	// @Autowired
 	public PersonneinterneController(PersonneinterneService personneinterneService) {
 		this.personneinterneService = personneinterneService;
+	}
+
+	@GetMapping("ByIDetMdp")
+	public PersonneinterneSimple getPersonneinternByIdentifiantmdp(
+			@RequestParam(required = true) String identifiant,
+			@RequestParam(required = true) String motdepasse
+	) {
+
+		return personneinterneService.getPersonneinterneByIdentifiantmdp(identifiant, motdepasse);
 	}
 
   /* @GetMapping(path = "{identifiant}")
