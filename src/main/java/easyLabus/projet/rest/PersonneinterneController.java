@@ -20,12 +20,12 @@ public class PersonneinterneController {
 	}
 
 	@GetMapping("ByIDetMdp")
-	public PersonneinterneSimple getPersonneinternByIdentifiantmdp(
+	public PersonneinterneSimple getPersonneinterneByIdentifiant(
 			@RequestParam(required = true) String identifiant,
 			@RequestParam(required = true) String motdepasse
 	) {
 
-		return personneinterneService.getPersonneinterneByIdentifiantmdp(identifiant, motdepasse);
+		return personneinterneService.getPersonneinterneByIdentifiant(identifiant, motdepasse);
 	}
 
   /* @GetMapping(path = "{identifiant}")

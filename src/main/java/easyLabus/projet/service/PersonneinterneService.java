@@ -27,7 +27,7 @@ public class PersonneinterneService {
     }
 
     @Transactional(readOnly = true)
-    public PersonneinterneSimple getPersonneinterneByIdentifiantmdp (String identifiant, String motdepasse) {
+    public PersonneinterneSimple getPersonneinterneByIdentifiant (String identifiant, String motdepasse) {
         return personneinterneDao.getPersonneinterneByIdentifiantmdp(identifiant, motdepasse);
     }
 /*
