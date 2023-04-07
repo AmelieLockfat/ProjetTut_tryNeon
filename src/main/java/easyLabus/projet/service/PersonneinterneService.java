@@ -2,6 +2,8 @@ package easyLabus.projet.service;
 
 import java.util.List;
 
+import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.PersonneinterneSimple;
 import easyLabus.projet.entity.Enseignement;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,11 @@ public class PersonneinterneService {
         this.enseignementDao = enseignementDao;
         this.niveauDao=niveauDao;
         this.personneinterneDao=personneinterneDao;
+    }
+
+    @Transactional(readOnly = true)
+    public PersonneinterneSimple getPersonneinterneByIdentifiantmdp (String identifiant, String motdepasse) {
+        return personneinterneDao.getPersonneinterneByIdentifiantmdp(identifiant, motdepasse);
     }
 /*
     @Transactional(readOnly = true)
