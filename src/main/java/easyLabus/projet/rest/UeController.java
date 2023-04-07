@@ -104,6 +104,13 @@ public class UeController {
         return ueService.getIntervenants(codeue);
     }
 
+    @GetMapping("ByCodeue")
+    public UeSimple getBycode(
+            @RequestParam(required = true) String codeue) {
+
+        return ueService.getBycodeue(codeue);
+    }
+
     @GetMapping("Contenus")
     public List<ContenuSimple> getContenus(
         @RequestParam(required = true) String codeue) {

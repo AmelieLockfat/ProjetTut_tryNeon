@@ -38,4 +38,11 @@ public interface UeRepository extends JpaRepository<Ue, String> {
                   +"INNER JOIN Ue u ON ens.codeue = u.codeue "
          +"WHERE u.codeue = :code ")
     public List<IntervenantUESimple> getIntervenants(String code);
+
+
+    @Query(nativeQuery=true ,
+            value = " SELECT ues.codeue as codeue, ues.intituleue as intituleue "
+                    + "FROM Ue ues "
+                    + "WHERE ues.codeue = :codeue ")
+    public UeSimple getBycode(String codeue) ;
 }
