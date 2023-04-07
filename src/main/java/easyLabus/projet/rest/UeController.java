@@ -5,12 +5,13 @@ import easyLabus.projet.entity.FicheENS;
 import easyLabus.projet.entity.Ue;
 import easyLabus.projet.entity.FicheUE;
 import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.FausseFicheUESimple;
 import easyLabus.projet.dto.IntervenantUESimple;
-//import easyLabus.projet.service.UeService;
 import easyLabus.projet.dto.UeSimple;
 
 import java.util.List;
+import java.util.Map;
 
 import easyLabus.projet.service.UeService;
 import org.springframework.web.bind.annotation.*;
@@ -108,6 +109,14 @@ public class UeController {
         @RequestParam(required = true) String codeue) {
 
         return ueService.getContenus(codeue);
+    }
+
+    @PostMapping("AddEns")
+    public EnseignementSimple addEnseignement(
+        @RequestBody Map<String, String> newEnseignementJSON,
+        @RequestParam(required = true) String codeue) {
+
+        return ueService.addNewEnseignement(codeue,newEnseignementJSON.get("codeens"),newEnseignementJSON.get("nomens"),newEnseignementJSON.get("contenu"));
     }
 
   /*  @PutMapping(path = "{codeue}/delUe")

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import easyLabus.projet.dto.ContenuSimple;
+import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.FausseFicheUESimple;
 import easyLabus.projet.dto.IntervenantUESimple;
 import easyLabus.projet.dto.UeSimple;
@@ -52,6 +53,15 @@ public class UeService {
     @Transactional(readOnly = true)
     public List<ContenuSimple> getContenus (String codeue) {
         return ueDao.getContenus(codeue);
+    }
+
+    @Transactional
+    public EnseignementSimple addNewEnseignement (String codeue, String codeens, String nomens, String contenu) {
+        var UE = ueDao.findById(codeue).orElseThrow();
+        Enseignement ENS = new Enseignement(codeens,nomens,codeue,0.0,0.0,0.0,contenu);
+        enseignementDao.save(ENS);
+        ueDao.save(UE);
+        return enseignementDao.getSimpleByCodeens(codeens);
     }
 
 /*
