@@ -40,7 +40,14 @@ public class EnseignementService {
     public List<IntervenantENSSimple> getIntervenants (String codeens) {
         return enseignementDao.getIntervenants(codeens);
     }
+
+    @Transactional(readOnly = true)
+    public boolean existENS (String codeens) {
+  Enseignement ENS = enseignementDao.getById(codeens);
+        return (ENS != null) ;
+    }
 /*
+
     @Transactional
     public Enseignement creerEnseignement (String codeens,String nomens,Double CM,Double TD,Double TP,String codeue, String contenu, Double heuretravailperso, Double coefficient, String modalitesevaluation, String prerequis, String planducours) {
         if (enseignementDao.existsById(codeens)){

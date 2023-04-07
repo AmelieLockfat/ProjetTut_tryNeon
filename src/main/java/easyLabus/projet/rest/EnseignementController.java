@@ -42,6 +42,12 @@ public class EnseignementController {
         return enseignementService.getIntervenants(codeens);
     }
 
+    @GetMapping("existENS")
+    public boolean existENS(
+            @RequestParam(required = true) String codeens) {
+        return enseignementService.existENS(codeens);
+    }
+
 /*
 	@PostMapping(path = "new")
     public Enseignement creerEns(
