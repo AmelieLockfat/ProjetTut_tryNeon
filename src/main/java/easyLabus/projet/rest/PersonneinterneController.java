@@ -19,11 +19,10 @@ public class PersonneinterneController {
 		this.personneinterneService = personneinterneService;
 	}
 
-	@GetMapping(path ="ByIDetMdp")
-	public PersonneinterneSimple getPersonneinterneByIdentifiantm(
-			@RequestParam(required = true) String identifiant,
-			@RequestParam(required = true) String motdepasse
-	) {
+	@GetMapping(path = "ById&Mdp")
+    public PersonneinterneSimple ByIdentifantEtMotdepasse(
+        @RequestParam(required = true) String identifiant,
+        @RequestParam(required = true) String motdepasse) {
 
 		return personneinterneService.getPersonneinterneByIdentifiant(identifiant, motdepasse);
 	}

@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PersonneinterneRepository extends JpaRepository<Personneinterne, String> {
 
-    @Query(nativeQuery = true, value =
-            "SELECT pers.identifiant, pers.motdepasse, pers.prenompers, pers.nompers, pers.estdirecteur, pers.intituleniveau, pers.coordprive, pers.numtel, pers.email "
+    @Query("SELECT pers.identifiant as identifiant, pers.motdepasse as motdepasse, pers.prenompers as prenompers, pers.nompers as nompers, pers.estdirecteur as estdirecteur, pers.niveau.intituleniveau as intituleniveau, pers.coordprivee as coordprivee, pers.numtel as numtel, pers.email as email "
                     + "FROM Personneinterne pers "
                     + "WHERE pers.identifiant = :identifiant AND pers.motdepasse = :motdepasse ")
     public PersonneinterneSimple getPersonneinterneByIdentifiantmdp(String identifiant, String motdepasse);
