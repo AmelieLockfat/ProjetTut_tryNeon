@@ -85,7 +85,7 @@ public class PersonneinterneService {
         personneinterneDao.save(PERS);
         return PERS;
     }
-
+*/
     @Transactional(readOnly = true)
     public boolean identifiantsValid(String identifiant, String motdepasse) {
         if (personneinterneDao.existsById(identifiant)){
@@ -96,7 +96,7 @@ public class PersonneinterneService {
         }
         return false;
     }
-
+/*
     @Transactional
     public void delPersonneinterne(String identifiant) {
         var PERS = personneinterneDao.findById(identifiant).orElseThrow();

@@ -64,7 +64,7 @@ public class PersonneinterneController {
 
         return personneinterneService.modifPersonneinterne(identifiant, motdepasse, prenom, nom, email, numtel, intituleniveau, coordprivee, estdirecteur);
     }
-
+*/
     @GetMapping(path = "connect")
     public boolean identsValid(
         @RequestParam(required = true) String identifiant,
@@ -72,7 +72,7 @@ public class PersonneinterneController {
 
         return personneinterneService.identifiantsValid(identifiant, motdepasse);
     }
-
+/*
     @PutMapping(path = "{identifiant}/delPersonneinterne")
     public void delPersonneinterne(
             @PathVariable String identifiant)
