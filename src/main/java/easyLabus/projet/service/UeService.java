@@ -56,7 +56,7 @@ public class UeService {
     }
 
     @Transactional(readOnly = true)
-    public List<UeSimple> getBycodeue (String codeue) {
+    public UeSimple getBycodeue (String codeue) {
         return ueDao.getBycode(codeue);
     }
 

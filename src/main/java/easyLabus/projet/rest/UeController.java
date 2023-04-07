@@ -105,7 +105,7 @@ public class UeController {
     }
 
     @GetMapping("ByCodeue")
-    public List<UeSimple> getBycode(
+    public UeSimple getBycode(
             @RequestParam(required = true) String codeue) {
 
         return ueService.getBycodeue(codeue);

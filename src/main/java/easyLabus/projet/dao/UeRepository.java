@@ -41,8 +41,8 @@ public interface UeRepository extends JpaRepository<Ue, String> {
 
 
     @Query(nativeQuery=true ,
-            value = " SELECT ues.codeue as codeue, ues.intituleue "
+            value = " SELECT ues.codeue as codeue, ues.intituleue as intituleue "
                     + "FROM Ue ues "
                     + "WHERE ues.codeue = :codeue ")
-    public List<UeSimple> getBycode(String codeue) ;
+    public UeSimple getBycode(String codeue) ;
 }
