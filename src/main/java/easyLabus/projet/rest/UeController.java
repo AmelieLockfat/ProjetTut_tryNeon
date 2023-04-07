@@ -119,6 +119,13 @@ public class UeController {
         return ueService.addNewEnseignement(codeue,newEnseignementJSON.get("codeens"),newEnseignementJSON.get("nomens"),newEnseignementJSON.get("contenu"));
     }
 
+    @DeleteMapping("DelEns")
+    public void delEnseignement(
+        @RequestParam(required = true) String codeens) {
+
+        ueService.delEnseignement(codeens);
+    }
+
   /*  @PutMapping(path = "{codeue}/delUe")
     public void delUe(
             @PathVariable String codeue) {
