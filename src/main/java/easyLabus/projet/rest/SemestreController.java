@@ -31,8 +31,8 @@ public class SemestreController {
     @PostMapping("AddUe")
     public UeSimple addUe(
             @RequestBody Map<String, String> newUeJSON,
-            @RequestParam(required = true) Long idSemestre) {
+            @RequestParam(required = true) String idSemestre) {
 
-        return semestreservice.addNewUe(newUeJSON.get("codeue"),newUeJSON.get("intituleue"), idSemestre);
+        return semestreservice.addNewUe(newUeJSON.get("codeue"),newUeJSON.get("intituleue"), Long.valueOf(idSemestre));
     }
 }
