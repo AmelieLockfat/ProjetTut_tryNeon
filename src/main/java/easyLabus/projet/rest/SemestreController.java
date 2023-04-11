@@ -4,6 +4,7 @@ import easyLabus.projet.dto.EnseignementSimple;
 import easyLabus.projet.dto.SemestreSimple;
 import easyLabus.projet.dto.UeSimple;
 import easyLabus.projet.entity.Semestre;
+import easyLabus.projet.requestedEntity.RequestedUESimple;
 import easyLabus.projet.service.SemestreService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class SemestreController {
 
     @PostMapping("AddUe")
     public void addUe(
-        @RequestBody UeSimple newUe,
+        @RequestBody RequestedUESimple newUe,
         @RequestParam(required = true) Long idsemestre) {
 
         semestreservice.addNewUe(newUe.getCodeue(),newUe.getIntituleue(), idsemestre);
