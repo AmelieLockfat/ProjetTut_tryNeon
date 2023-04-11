@@ -21,7 +21,6 @@ public class SemestreService {
 
     private final SemestreRepository semestreDao ;
     private final NiveauRepository niveauDao;
-
     private final UeRepository ueDao ;
 
     public SemestreService(SemestreRepository semestreDao, NiveauRepository niveauDao, UeRepository ueDao) {
@@ -30,13 +29,12 @@ public class SemestreService {
         this.ueDao = ueDao;
     }
 
-    @Transactional
-    public UeSimple addNewUe (String codeue, String intitule, Long idSemestre) {
+    @Transactional(readOnly = false)
+    public void addNewUe (String codeue, String intitule, Long idSemestre) {
         var semestre = semestreDao.findById(idSemestre).orElseThrow();
         Ue nUE = new Ue(codeue,intitule,idSemestre,0,0.0,0.0,0.0);
         ueDao.save(nUE);
         semestreDao.save(semestre);
-        return ueDao.getBycode(codeue);
     }
 
 
